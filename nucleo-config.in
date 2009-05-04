@@ -1,0 +1,86 @@
+#!/bin/sh
+#
+# nucleo-config.in --
+#
+# Copyright (C) Nicolas Roussel
+#
+# See the file LICENSE for information on usage and redistribution of
+# this file, and for a DISCLAIMER OF ALL WARRANTIES.
+#
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+CPPFLAGS="@CPPFLAGS@ -I$includedir"
+CXXFLAGS="@CXXFLAGS@"
+LDFLAGS="-L$libdir @LDFLAGS@"
+LIBS="-lNucleo @LIBS@"
+
+case $1 in
+  --cxx)
+    echo "$CXX"
+  ;;
+  --cppflags)
+    echo $CPPFLAGS
+  ;;
+  --cxxflags)
+    echo $CXXFLAGS
+  ;;
+  --ldflags)
+    echo $LDFLAGS
+  ;;
+  --libs)
+    echo $LIBS
+  ;;
+  --srcdir)
+    echo @abs_top_srcdir@
+  ;;
+  --builddir)
+    echo @abs_top_builddir@
+  ;;
+  --prefix)
+    echo $prefix
+  ;;
+  --exec-prefix)
+    echo $exec_prefix
+  ;;
+  --vnc-cppflags)
+    echo @VNC_CPPFLAGS@
+  ;;
+  --vnc-ldflags)
+    echo @VNC_LDFLAGS@
+  ;;
+  --version)
+    echo @VERSION@
+  ;;
+  --has|--have|--support|--supports)
+    case $2 in
+      # XXX should be in upper-case, as in HAVE_XXX
+      JPEG) echo @HAVE_JPEG@ ;;
+      PNG) echo @HAVE_PNG@ ;;
+      EXIF) echo @HAVE_EXIF@ ;;
+      OPENGL) echo @HAVE_OPENGL@ ;;
+      AGL) echo @HAVE_AGL@ ;;
+      GLX) echo @HAVE_GLX@ ;;
+      XINPUT) echo @HAVE_XINPUT@ ;;
+      FREETYPE2) echo @HAVE_FREETYPE2@ ;;
+	 DNS_SD) echo @HAVE_DNS_SD@ ;;
+      EXPAT) echo @HAVE_EXPAT@ ;;
+      GNUTLS) echo @HAVE_GNUTLS@ ;;
+      VNC) echo @HAVE_VNC@ ;;
+      FFMPEG) echo @HAVE_FFMPEG@ ;;
+      QT) echo @HAVE_QT@ ;;
+      GD) echo @HAVE_GD@ ;;
+      OPENCV) echo @HAVE_OPENCV@ ;;
+      *) echo 0 ;;
+    esac
+  ;;
+  *)
+    echo "CPPFLAGS=\"$CPPFLAGS\""
+    echo "CXXFLAGS=\"$CXXFLAGS\""
+    echo "LDFLAGS=\"$LDFLAGS\""
+    echo "LIBS=\"$LIBS\""
+  ;;
+esac

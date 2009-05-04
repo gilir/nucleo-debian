@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: nucleo
+Description: a toolkit for exploring new uses of video and new interaction techniques
+Version: @VERSION@
+Cflags: @CPPFLAGS@ -I${includedir}
+Libs: @LDFLAGS@ -L${libdir} -lNucleo @LIBS@

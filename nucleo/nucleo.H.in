@@ -1,0 +1,45 @@
+#ifndef n_nucleo_H
+#define n_nucleo_H
+
+/*
+ *
+ * nucleo/nucleo.H --
+ *
+ * Copyright (C) Nicolas Roussel
+ *
+ * See the file LICENSE for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
+ *
+ */
+
+#include <string>
+
+namespace nucleo {
+
+#define NUCLEO_SUPPORTS_JPEG @HAVE_JPEG@
+#define NUCLEO_SUPPORTS_PNG @HAVE_PNG@
+#define NUCLEO_SUPPORTS_EXIF @HAVE_EXIF@
+
+#define NUCLEO_SUPPORTS_OPENGL @HAVE_OPENGL@
+#define NUCLEO_SUPPORTS_AGL @HAVE_AGL@
+#define NUCLEO_SUPPORTS_GLX @HAVE_GLX@
+#define NUCLEO_SUPPORTS_XINPUT @HAVE_XINPUT@
+#define NUCLEO_SUPPORTS_FREETYPE2 @HAVE_FREETYPE2@
+
+#define NUCLEO_SUPPORTS_DNS_SD @HAVE_DNS_SD@
+
+#define NUCLEO_SUPPORTS_EXPAT @HAVE_EXPAT@
+#define NUCLEO_SUPPORTS_GNUTLS @HAVE_GNUTLS@
+
+#define NUCLEO_SUPPORTS_VNC @HAVE_VNC@
+#define NUCLEO_SUPPORTS_FFMPEG @HAVE_FFMPEG@
+#define NUCLEO_SUPPORTS_QT @HAVE_QT@
+#define NUCLEO_SUPPORTS_OPENCV @HAVE_OPENCV@
+
+  std::string getNucleoVersion(void) ;
+  std::string getNucleoPluginsDirectory(void) ;
+  std::string getNucleoResourcesDirectory(void) ;
+
+}
+
+#endif

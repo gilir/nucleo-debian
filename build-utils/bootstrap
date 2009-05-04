@@ -1,0 +1,75 @@
+#!/bin/sh
+#
+# build-utils/bootstrap --
+#
+# Copyright (C) Nicolas Roussel
+# Copyright (C) Olivier Chapuis
+#
+# See the file LICENSE for information on usage and redistribution of
+# this file, and for a DISCLAIMER OF ALL WARRANTIES.
+#
+
+automake_version=`automake --version | grep 'automake' | sed -e 's/^[^0-9]*\([0-9.][0-9.]*\).*$/\1/'`
+libtool_version=`libtoolize --version | grep 'libtoolize' | sed -e 's/^[^0-9]*\([0-9.][0-9.]*\).*$/\1/'`
+autoconf_version=`autoconf --version | grep 'autoconf' | sed -e 's/^[^0-9]*\([0-9.][0-9.]*\).*$/\1/'`
+pkgconfig_version=`pkg-config --version | sed -e 's/^[^0-9]*\([0-9.][0-9.]*\).*$/\1/'`
+
+echo "found automake $automake_version (1.7.x or better required) "
+echo "found libtool $libtool_version (1.4.x or better required)"
+echo "found autoconf $autoconf_version (2.59 or better required)"
+echo "found pkg-config $pkgconfig_version (0.17.2 or better required)"
+
+bad_automake=true
+case $automake_version in
+    1.7*)
+	bad_automake=false
+    ;;
+    1.8*|1.9*|1.10*)
+	am_force="--force"
+	bad_automake=false
+    ;;
+esac
+
+bad_libtool=true
+case $libtool_version in
+    1.4*|1.5*|1.6*|2.2*)
+	bad_libtool=false
+    ;;
+esac
+
+bad_autoconf=true
+case $autoconf_version in
+    2.5*|2.6*)
+	bad_autoconf=false
+    ;;
+esac
+
+do_abort=false
+
+if $bad_automake ; then
+    echo "bad automake version"
+    do_abort=true
+fi
+if $bad_libtool ; then
+    echo "bad libtool version"
+    do_abort=true
+fi
+if $bad_autoconf ; then
+    echo "bad autoconf version"
+    do_abort=true
+fi
+
+if $do_abort ; then
+    echo "...aborting"
+    exit 1
+fi
+
+set -x
+
+rm -rf autom4te*.cache
+
+libtoolize --automake --copy || exit 1
+aclocal $am_force || exit 2
+autoheader --force || exit 3
+automake --add-missing --copy --force-missing || exit 4
+autoconf --force || exit 5

@@ -1,0 +1,33 @@
+#!/bin/sh
+
+prefix=@prefix@
+datadir=@datadir@
+
+PROGRAM=$1
+if test ! -f $PROGRAM; then
+  # Try to find the program in PATH
+  PROGRAM=`which $PROGRAM`
+fi
+
+WHERE=`dirname $PROGRAM`
+WHAT=`basename $PROGRAM`
+
+EXECUTABLE=$WHERE/.libs/$WHAT
+if test ! -f $EXECUTABLE; then
+  # Not a libtool-made program
+  EXECUTABLE=$PROGRAM
+fi
+
+BUNDLE=/tmp/$WHAT.app
+
+shift
+
+rm -rf $BUNDLE
+
+mkdir -p $BUNDLE/Contents/MacOS
+cp $EXECUTABLE $BUNDLE/Contents/MacOS
+
+#echo "APPL????" > $BUNDLE/Contents/PkgInfo
+sed -e "s/|EXEC|/"$WHAT"/g" $datadir/nucleo/Info.plist.tmpl > $BUNDLE/Contents/Info.plist
+
+exec $BUNDLE/Contents/MacOS/$WHAT $@

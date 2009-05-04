@@ -1,0 +1,112 @@
+#!/usr/bin/python
+# -*- coding: latin-1 -*-
+          
+import sys, string, popen2, os, shutil, glob
+from sets import Set
+
+prefix = "@prefix@"
+exec_prefix = "@exec_prefix@"
+libdir = "@libdir@"
+datadir = "@datadir@"
+
+exec_prefix = string.replace(exec_prefix,"${prefix}",prefix)
+libdir = string.replace(libdir,"${exec_prefix}",exec_prefix)
+datadir = string.replace(datadir,"${prefix}",prefix)
+
+# ------------------------------------------------------------
+
+def findExec(path):
+    if os.path.isfile(path): return path
+    for directory in string.split(os.getenv("PATH"),":"):
+        newpath = "%s/%s"%(directory,path)
+        if os.path.isfile(newpath): return newpath
+    raise "Unable to find %s"%path
+
+def deLibtoolize(path):
+    where, what = os.path.split(path)
+    libtoolized = os.path.join(os.path.join(where,".libs"),what)
+    if os.path.isfile(libtoolized): return libtoolized
+    return path
+
+def isExotic(path):
+    if path.find("@executable_path")==0:
+        print "Warning: make sure you add",path
+        return False
+    stdprefix = ("/System/","/usr/lib")
+    for prefix in stdprefix:
+        if string.find(path,prefix)!=-1: return False
+    return True
+
+def fixLibPaths(path, exec_dir, fixed, tobefixed, intprefix=""):
+    print "Copying/fixing",path
+    shutil.copy(path, exec_dir)
+    base = os.path.basename(path)
+    filetofix = exec_dir+base
+   
+    lines = popen2.popen2('otool -L %s'%filetofix)[0].readlines()
+    for line in lines:
+        if line[0]!='\t': continue
+        libpath = string.split(line)[0]
+        if isExotic(libpath):
+            #print "   +",line,
+            libname = os.path.basename(libpath)
+            command = "install_name_tool -change %s @executable_path%s/%s %s"%(libpath,intprefix,libname,filetofix)
+            #print command
+            os.system(command)
+            if libpath not in fixed: tobefixed.add(libpath)
+        else:
+            #print "-",line,
+            pass
+
+    command = "install_name_tool -id @executable_path%s/%s %s"%(intprefix,base,filetofix)
+    os.system(command)
+    fixed.add(path)
+    tobefixed.discard(path)
+    
+# ------------------------------------------------------------
+
+path = deLibtoolize(findExec(sys.argv[1]))
+
+try:
+    destination = sys.argv[2]
+except:
+    destination = os.path.expanduser("~/Desktop")
+
+where, what = os.path.split(path)
+
+bundle = "%s/%s.app"%(destination,what)
+shutil.rmtree(bundle, ignore_errors=True)
+
+exec_dir = bundle+"/Contents/MacOS/"
+os.makedirs(exec_dir)
+fixed, tobefixed = Set(), Set()
+fixLibPaths(path, exec_dir, fixed, tobefixed)
+while len(tobefixed):
+    for path in list(tobefixed):
+        fixLibPaths(path, exec_dir, fixed, tobefixed)   
+
+fonts = glob.glob(datadir+"/nucleo/fonts/*.ttf")
+print "Copying %d fonts from %s/nucleo/fonts/"%(len(fonts),datadir)
+font_dir = bundle+"/Contents/Resources/fonts"
+os.makedirs(font_dir)
+for font in fonts: shutil.copy(font, font_dir)
+
+plugin_dir = bundle+"/Contents/PlugIns/"
+os.makedirs(plugin_dir)
+fixed, tobefixed = Set(), Set()
+for p in glob.glob(libdir+"/nucleo/*.so"): tobefixed.add(p)
+print "Copying %d plugins from %s/nucleo/"%(len(tobefixed),libdir)
+while len(tobefixed):
+    for path in list(tobefixed):
+        fixLibPaths(path, plugin_dir, fixed, tobefixed, "/../PlugIns")   
+
+print "Copying plugin-list"
+shutil.copy(datadir+"/nucleo/plugin-list", bundle+"/Contents/Resources/")
+
+print "Copying Núcleo icon"
+shutil.copy(datadir+"/nucleo/nucleo.icns", bundle+"/Contents/Resources/appl.icns")
+
+print "Copying Info.plist"
+info = open(datadir+"/nucleo/Info.plist.tmpl","r").read()
+info = string.replace(info,"|EXEC|",what)
+open(bundle+"/Contents/Info.plist","w").write(info)

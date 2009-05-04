@@ -1,0 +1,27 @@
+#ifndef n_glIncludes_H
+#define n_glIncludes_H
+
+/*
+ *
+ * nucleo/gl/glIncludes.H --
+ *
+ * Copyright (C) Nicolas Roussel
+ *
+ * See the file LICENSE for information on usage and redistribution of
+ * this file, and for a DISCLAIMER OF ALL WARRANTIES.
+ *
+ */
+
+#if @HAVE_AGL@
+#include <OpenGL/gl.h>
+#include <OpenGL/glext.h>
+#include <OpenGL/glu.h>
+#endif
+
+#if @HAVE_GLX@
+#include <GL/gl.h>
+#include <GL/glext.h>
+#include <GL/glu.h>
+#endif
+
+#endif

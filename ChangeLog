@@ -1,0 +1,2627 @@
+2008-07-21  Remi Cardona  <remi.cardona@lri.fr>
+
+	* Makefile.am:
+	* configure.ac:
+	Add configure check to disable building tests (the default action is
+	to still build them)
+
+	* demos/misc/multitexture.cxx:
+	* nucleo/core/URI.cxx:
+	* nucleo/gl/glUtils.cxx:
+	* nucleo/gl/text/glFont.cxx:
+	* nucleo/gl/texture/glTexture.cxx:
+	* nucleo/image/Image.cxx:
+	* nucleo/image/encoding/Conversion.cxx:
+	* nucleo/image/encoding/JPEG.cxx:
+	* nucleo/image/processing/basic/Paint.H:
+	* nucleo/image/processing/chromakeying/ChromaKeyingFilter.cxx:
+	* nucleo/image/processing/difference/Difference.cxx:
+	* nucleo/image/processing/gamma/GammaCorrection.cxx:
+	* nucleo/image/processing/noise/PerlinNoise.cxx:
+	* nucleo/image/sink/glwindowImageSink.cxx:
+	* nucleo/image/sink/nudppImageSink.cxx:
+	* nucleo/image/sink/serverpushImageSink.cxx:
+	* nucleo/image/source/nudpcImageSource.cxx:
+	* nucleo/image/source/nudppImageSource.cxx:
+	* nucleo/image/source/v4lImageSource.cxx:
+	* nucleo/network/http/HttpMessage.cxx:
+	* nucleo/network/http/ServerPush.cxx:
+	* nucleo/network/tcp/TcpConnection.cxx:
+	* nucleo/network/udp/StunResolverPrivate.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	* nucleo/plugins/vnc/vncImageSource.cxx:
+	* nucleo/utils/FileUtils.cxx:
+	* nucleo/utils/StringUtils.H:
+	include <cmath>, <cstdio>, <cstring> and <cstdlib> instead of
+	<math.h>, <stdio.h>, <string.h> and <stdlib.h> respectively (the new
+	includes were already being used in some parts of nucleo)
+
+	* nucleo/network/tcp/BufferedTcpConnection.H:
+	add missing #include <cstring>
+
+2008-06-18  Remi Cardona  <remi.cardona@lri.fr>
+
+	* nucleo/utils/FileUtils.cxx:
+	add missing parameter to open() with O_CREAT (glibc 2.8 is now much
+	stricter with -D_FORTIFY_SOURCE=2), patch by Frédéric Crozat
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	add a missing include in ffmpeg plugin for gcc 4.3 support (patch by
+	Frédéric Crozat)
+
+2008-06-13  Remi Cardona  <remi.cardona@lri.fr>
+
+	* configure.ac:
+	Post-release version bump to 0.7.3
+
+2008-06-09  Remi Cardona  <remi.cardona@lri.fr>
+
+	* apps/videoClient.cxx:
+	* apps/videoServer/Notifier.cxx:
+	* apps/videoServer/VideoService.cxx:
+	* apps/videoServer/main.cxx:
+	* configure.ac:
+	* demos/misc/disBonjour.cxx:
+	* demos/misc/paz.cxx:
+	* demos/video/collage.cxx:
+	* demos/video/files2dst.cxx:
+	* demos/video/mini-mirrorSpace.cxx:
+	* demos/video/mini-videoProbe.cxx:
+	* demos/video/src2files.cxx:
+	* nucleo/core/TimeStamp.cxx:
+	* nucleo/core/URI.cxx:
+	* nucleo/core/UUID.cxx:
+	* nucleo/gl/scenegraph/sgNode.cxx:
+	* nucleo/gl/texture/glTexture.cxx:
+	* nucleo/gl/window/glWindow.cxx:
+	* nucleo/gl/window/glWindow_GLX.H:
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	* nucleo/image/encoding/PAM.cxx:
+	* nucleo/image/encoding/RGBAL.H:
+	* nucleo/image/processing/basic/Paint.cxx:
+	* nucleo/image/processing/basic/Resize.cxx:
+	* nucleo/image/processing/basic/Transform.cxx:
+	* nucleo/image/sink/nudppImageSink.cxx:
+	* nucleo/image/source/noiseImageSource.cxx:
+	* nucleo/image/source/nudppImageSource.cxx:
+	* nucleo/network/tcp/TcpConnection.cxx:
+	* nucleo/network/tcp/TcpUtils.cxx:
+	* nucleo/network/udp/StunResolver.cxx:
+	* nucleo/network/udp/StunResolverPrivate.cxx:
+	* nucleo/network/udp/UdpPlusReceiver.cxx:
+	* nucleo/network/udp/UdpPlusSender.cxx:
+	* nucleo/network/udp/UdpReceiver.cxx:
+	* nucleo/network/udp/UdpSender.cxx:
+	* nucleo/network/udp/UdpSocket.cxx:
+	* nucleo/nucleo.cxx:
+	* nucleo/utils/AppUtils.cxx:
+	* nucleo/utils/FileUtils.cxx:
+	* nucleo/utils/MD5.H:
+	* nucleo/utils/MD5.cxx:
+	* tests/test-Base64.cxx:
+	* tests/test-FileKeeper.cxx:
+	* tests/test-Phone.cxx:
+	* tests/test-Ping.cxx:
+	* tests/test-ReactiveEngine.cxx:
+	* tests/test-SocketKeeper.cxx:
+	* tests/test-TimeKeeper.cxx:
+	* tests/test-UdpSocket.cxx:
+	* tests/test-XmlParser.cxx:
+	* tests/test-glTexture.cxx:
+	* tests/test-glWindow.cxx:
+	* tests/test-httpServer.cxx:
+	* tests/test-plugins.cxx:
+	* tests/test-rdv.cxx:
+	* tests/test-sgNode.cxx:
+	* tests/test-speed.cxx:
+	* tests/test-udpplus.cxx:
+	Add missing #include for Gcc 4.3 support
+
+2008-06-04  Remi Cardona  <remi.cardona@lri.fr>
+
+	* confgure.ac:
+	bump version number to 0.7.2
+
+	* configure.ac:
+	* nucleo/gl/window/keysym.H.in:
+	Always use system X11/keysym.h when building with GLX
+
+	* build-utils/bootstrap:
+	* configure.ac:
+	fix build error on non-darwin systems, allow building with libtool 2.2
+
+2008-05-30  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/Makefile.am: 
+	* nucleo/core/cocoa/Makefile.am: 
+	* nucleo/core/cocoa/cPoolTrick.*:
+	Added an Objective-C function (doThePoolTrick) to create an
+	NSAutoreleasePool to suppress warning messages in the console
+
+	* nucleo/core/carbon/cReactiveEngine.cxx: 
+	* nucleo/image/source/qtSgImageSource.cxx: 
+	Added a call to doThePoolTrick
+
+	* nucleo/core/ReactiveObject.H (nucleo): 
+	subscribeTo and unsubscribeFrom now check if the object pointed to
+	is alive before dereferencing the pointer
+
+2008-05-23  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/plugins/ffmpeg/Makefile.am: 
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.H:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.H:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx:
+	FFMpeg update
+
+	* tests/Makefile.am: 
+	* tests/test-XmppConnection.cxx: 
+	Added a new test program
+
+2008-01-31  Remi Cardona  <remi.cardona@lri.fr>
+
+	* configure.ac:
+	* demos/opencv/faceFinder/Makefile.am:
+	* nucleo/plugins/qt/Makefile.am:
+	Update the configure scripts to find a compromise between
+	the reverted patches and the previous autodetection system
+	Bump the version number to 0.7.1
+
+2008-01-28  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac: 
+	* nucleo-config.in:
+	* nucleo.pc.in:
+	* demos/opencv/opticalFlow/Makefile.am:
+	* demos/video/Makefile.am:
+	* nucleo/gl/text/Makefile.am:
+	* nucleo/network/dnssd/Makefile.am:
+	* nucleo/network/xmpp/Makefile.am:
+	* nucleo/plugins/ffmpeg/Makefile.am:
+	* nucleo/xml/Makefile.am:
+	* tests/Makefile.am:
+	Reverting to the old configuration style 
+
+	* nucleo/gl/window/glWindow_AGL.cxx: 
+	Leopard-related updates and fixes (deprecated functions)
+	
+2008-01-23  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/nudpcImageSource.cxx: 
+	Set the User-Agent header in the HTTP request
+
+2008-01-22  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/window/glWindow_AGL.cxx: 
+	Leopard-related fixes (deprecated functions)
+
+2008-01-15  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac: 
+	Fixed "cycle in dylib re-exports with /usr/X11/lib/libGL.dylib"
+	bug on Leopard
+
+2008-01-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/text/glString.*: 
+	Added a getNbGlyphs method
+
+2007-12-18  Remi Cardona  <remi.cardona@lri.fr>
+
+	* configure.ac:
+	use PKG_CONFIG from pkg-config's own autoconf macro
+
+	* configure.ac:
+	Fix summary display at the end of configure
+	Prettify configure.ac
+
+2007-12-07  Remi Cardona  <remi.cardona@lri.fr>
+
+	* configure.ac:
+	* nucleo/network/dnssd/Makefile.am:
+	Make DNS-SD support configurable in configure.ac
+
+2007-12-06  Remi Cardona  <remi.cardona@lri.fr>
+
+	* nucleo/plugins/ffmpeg/Makefile.am:
+	* nucleo/plugins/gd/Makefile.am:
+	Add missing headers to pass distcheck
+
+	* configure.ac:
+	* demos/video/Makefile.am:
+	* nucleo/gl/text/Makefile.am:
+	* tests/Makefile.am:
+	Make Freetype2 support configurable in configure.ac
+
+2007-12-05  Remi Cardona  <remi.cardona@lri.fr>
+
+	* configure.ac:
+	* nucleo/xml/Makefile.am:
+	Make expat support configurable in configure.ac
+
+2007-12-05  Remi Cardona  <remi.cardona@lri.fr>
+
+	* configure.ac:
+	* nucleo/network/xmpp/Makefile.am:
+	Make GnuTLS support optional in configure.ac
+
+2007-12-05  Remi Cardona  <remi.cardona@lri.fr>
+
+	* configure.ac:
+	* nucleo/plugins/ffmpeg/Makefile.am:
+	Make FFMpeg support optional in configure.ac
+
+2007-10-15  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/texture/glTexture.cxx: 
+	GLU callbacks are GLvoid(*)() on Leopard
+
+2007-07-18  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.H: 
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.H: 
+	FFmpeg is coded in C, not C++ (added a global extern "C")
+
+2007-04-27  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/TimeStamp.cxx: 
+	Bug fix: operator= should return a TimeStamp::inttype, not a bool
+
+2007-04-23  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/window/glWindow_GLX.cxx: 
+	ReactiveEngine::notify(this, this) is now replaced with selfNotify()
+
+2007-04-13  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/text/glString.*: 
+	Added a simplyRenderAsTexture that just displays the
+	glyphs (caller is thus responsible for enabling blending and
+	setting the texture environment mode to "replace")
+
+	* nucleo/core/TimeStamp.H: 
+	Added support for wday and yday in split UTC representations
+
+	* nucleo/gl/text/glFontManager.*: 
+	Added a static releaseAllFonts method
+
+2007-04-12  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/window/glWindow_AGL.cxx: 
+	Added a call to RemoveEventHandler in the destructor
+
+	* nucleo/core/TimeStamp.*: 
+	* tests/test-TimeStamp.cxx: 
+	Added several methods for handling split UTC representations
+
+	* nucleo/gl/text/glString.*: 
+	Added a renderAsTexture(x,y,z) method
+
+2007-04-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/TimeStamp.H: 
+	Added a getAsGMTime method
+
+2007-04-09  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/ReactiveObject.*:
+	* nucleo/core/ReactiveEngine.H:	
+	* nucleo/gl/window/glWindow_AGL.cxx:
+	* apps/videoClient.cxx:
+	* apps/videoServer/FileStreamer.cxx:
+	* demos/misc/paz.cxx:
+	New ReactiveObject::selfNotify method
+
+2007-04-04  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/texture/glTexture.H: 
+	Added a getTimeStamp method
+
+	* nucleo/gl/window/glWindow.*: 
+	Added a parseGeometry function
+
+2007-04-03  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/plugins/gd/AnimatedGifImageSink.cxx (nucleo): 
+	Added a "speed" option
+
+2007-04-02  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/encoding/CoreGraphics.cxx: 
+	Set the dimensions and timestamp when converting to JPEG or PNG
+
+	* configure.ac: 
+	* nucleo-config.in: 
+	* nucleo/plugins/Makefile.am: 	
+	* nucleo/plugins/gd/Makefile.am: 
+	* nucleo/plugins/gd/AnimatedGifImageSink.H: 
+	* nucleo/plugins/gd/AnimatedGifImageSink.cxx: 
+	New GD-based ImageSink plugin for creating animated GIFs
+	
+	* nucleo/image/sink/serverpushImageSink.cxx: 
+	Bug fix: set frameCount to 0 when the sink is started
+
+	* nucleo/image/source/qtMovImageSource.*: 
+	Added a getDuration method
+
+2007-03-31  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/sink/qtMovImageSink.*: 
+	Use CreateMovieStorage instead of CreateMovieFile, use the image
+	timestamps to compute their duration
+
+2007-03-28  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/FileUtils.cxx: 
+	createDir now recursively creates the parent directories
+
+2007-03-21  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/processing/basic/Paint.*: 
+	Added a parseColorCode method to parse #RRGGBB[AA] color codes
+
+2007-03-06  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/processing/basic/Resize.cxx: 
+	OS X: enable vImage-based rescaling for ARGB images
+
+	* nucleo/image/sink/Makefile.am: 
+	* nucleo/image/sink/ImageSink.cxx: 
+	* nucleo/image/sink/blackholeImageSink.H: 
+	New sink that does nothing (use blackhole: or devnull:)
+	
+2007-03-05  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/AppUtils.cxx: 
+	parseCommandLine now accepts unsigned int arguments (use 'u'
+	instead of 'i')
+
+2007-03-03  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/xmpp/XmppConnection.cxx: 
+	Experimental: waitFor is now blocking (doesn't call
+	ReactiveEngine::step anymore)
+
+2007-03-02  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/tcp/TcpConnection.H: 
+	Added a getState method that returns the internal FileKeeper's
+	state
+
+	* nucleo/network/udp/StunResolver.*: 
+	Suggest a few servers but don't hardcode them...
+
+	* nucleo/image/source/nucImageSource.cxx: 
+	Fixed a double free bug
+
+	* nucleo/image/encoding/CoreGraphics.cxx: 
+	Fixed EXIF timestamp import/export: timestamps are now saved and
+	read using the DateTimeOriginal and SubsecTimeOriginal tags for
+	subsecond precision
+
+2007-03-01  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/Image.*: 
+	If the timestamp is undefined, getTimeStamp tries to load it from
+	the image's metadata (e.g. EXIF tags)
+	
+	* nucleo/image/encoding/CoreGraphics.*: 	
+	Renamed cg_calcdims to cg_decode_meta as it now updates the
+	timestamp as well
+
+	* nucleo/image/source/nucImageSource.cxx: 
+	Notify observers when the source stops by itself
+
+	* nucleo/helpers/OpenCV.H: 
+	Images in any encoding other than ARGB, RGB or L will now be
+	converted to ARGB instead of RGB
+
+2007-02-27  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.H: 
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.H: 
+	* nucleo/plugins/ffmpeg/Makefile.am: 
+	Include stdint.h and define __STDC_CONSTANT_MACROS to make sure
+	the INT64_C macro is defined
+
+2007-02-26  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/UUID.*: 
+	* tests/test-UUID.cxx: 
+	Added a createAsBytesFromString method
+
+2007-02-21  Nicolas Roussel  <roussel@lri.fr>
+
+	* apps/videoServer/VideoServer.cxx: 
+	Dump the config, don't debug it...
+
+	* nucleo/utils/ConfigDict.*: 
+	Removed the "debug" method, added a "dump" one
+	Added a "defset" arg to "get" methods for storing the default value when it is used
+	Added a method for getting a std::string with a const char* default value
+
+	* nucleo/helpers/Phone.H: 
+	The static version of Phone::dial wasn't implemented...
+
+	* nucleo/utils/ConfigDict.H: 
+	Added a set(key,value) method
+
+	* nucleo/utils/AppUtils.cxx: 
+	Added an appIsBundled function
+
+2007-02-20  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/encoding/CoreGraphics.*: 
+	* nucleo/image/encoding/Conversion.cxx: 
+	* nucleo/image/encoding/PNGenc.*: 	
+	* nucleo/image/encoding/JPEG.cxx: 	
+	* nucleo/image/encoding/Makefile.am: 	
+	* nucleo/image/Image.cxx: 	
+	* configure.ac: 
+	PNG and JPEG conversion now uses CoreGraphics on OS X instead of libjpeg, libexif and libpng
+
+	* nucleo/image/sink/nserverImageSink.H:
+	* nucleo/image/sink/nudpImageSink.H:
+	* nucleo/image/sink/nudppImageSink.H:
+	* nucleo/image/sink/serverpushImageSink.cxx:
+	* apps/videoServer/VideoService.cxx:
+	Default JPEG quality for network sinks is now 60 
+
+2007-02-12  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac:
+	* nucleo-config.in:
+	* nucleo/nucleo.H.in:
+	* nucleo/network/Makefile.am:
+	* nucleo/network/xmpp/Makefile.am:
+	* nucleo/network/xmpp/XmppConnection.*:
+	Added basic XMPP client support
+
+	* nucleo/image/Image.*: 
+	* nucleo/image/encoding/Conversion.cxx: 
+	* nucleo/image/encoding/JPEG.cxx: 
+	* nucleo/image/source/qtSgImageSource.cxx: 
+	* nucleo/gl/glUtils.cxx: 
+	* apps/videoClient.cxx: 
+	Added preliminary YpCbCr422 support (OS X, display only)
+	
+2007-02-09  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/nucImageSource.cxx: 
+	Source can now restart correctly after it delivered the last image
+
+2007-02-08  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/plugins/vnc/Makefile.am: 
+	* nucleo/plugins/ffmpeg/Makefile.am: 
+	* nucleo/plugins/qt/Makefile.am: 
+	Added -avoid-version for dlopened modules
+	Commented out library-related rules for ffmpeg
+	
+2007-02-07  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/xml/Makefile.am: 
+	* nucleo/xml/XmlText.*: 
+	New files (XmlText.*)
+
+	* nucleo/utils/MD5.*: 
+	Clearing the object now resets it properly
+	Renamed as_bytes to bytearray
+
+	* nucleo/plugins/Makefile.am: 
+	Removed obsolete/experimental stuff (howl, glib)
+
+	* nucleo/plugins/qt/Makefile.am: 
+	Fixed distcheck-related things (moc_* files are not part of the distribution)
+
+	* nucleo/network/dnssd/DNSServiceBrowser.H: 
+	* apps/videoServer/Notifier.cxx: 
+	Added missing include 
+
+2007-02-07  Olivier Chapuis  <chapuis@lri.fr>
+
+	* glWindow_GLX.cxx (nucleo):
+	Fixed compilation
+
+2007-02-06  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/gl/window/glWindow_GLX.H: 
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	More 64 bits fixes
+	
+	* configure.ac:
+	* nucleo/gl/scenegraph/sgNode.H:
+	* nucleo/gl/scenegraph/sgNode.cxx:
+	* nucleo/gl/scenegraph/sgViewpoint.cxx:
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	Applied Gwenole Beauchene 64 bits arch patch plus some configure
+	improvment
+
+2007-02-05  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/Makefile.am: 
+	DNS-SD clases should be included even when it is not
+	supported (they just don't do anything in that case)
+
+2007-01-29  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/plugins/qt/Makefile.am: 
+	Don't include the moc_* files in the distribution
+
+2007-01-26  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/helpers/OpenCV.H: 
+	Include cv.h only if it han't been included already (allows
+	applications to include opencv/cv.h instead of cv.h)
+
+	* docs/todo.html: 
+	Documentation update
+
+2007-01-25  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac: 
+	* nucleo/nucleo.H.in: 
+	* nucleo/Makefile.am: 
+	* nucleo/xml/Makefile.am: 
+	* nucleo/xml/XmlStructure.*: 
+	* nucleo/xml/XmlParser.*: 
+	* tests/Makefile.am: 
+	* tests/test-XmlParser.*: 
+	Added a simple XML parser based on expat
+	
+2007-01-24  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/FileKeeper.cxx: 
+	getState should return NOTHING if the file descriptor is
+	invalid (-1)
+
+2007-01-22  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/AppUtils.H:
+	Removed some useless includes
+	
+	* nucleo/gl/window/glWindow_AGL.*: 
+	Fixed a few warnings (conversion between signed and unsigned)
+
+	* nucleo/core/PluginManager.*: 
+	Moved the getSymbol method in the .cxx file, removed some useless
+	includes
+
+	* nucleo/core/carbon/Makefile.am:
+	* nucleo/core/corefoundation/Makefile.am:
+	* demos/opencv/opticalFlow/Makefile.am:
+	Added some .H files needed by "make distcheck"
+	
+	* tests/test-Ping.cxx: 
+	Print a TimeStamp everytime the network status changes
+
+	* nucleo/helpers/OpenCV.H: 
+	* demos/opencv/faceFinder/HaarClassifier.cxx: 
+	OpenCV's pkg-config uses -I.../opencv, replace opencv/cv.h with cv.h
+
+	* nucleo/plugins/qt/Makefile.am: 
+	Added a CLEANFILES variable
+
+2007-01-22  Olivier Chapuis  <chapuis@lri.fr>
+
+	* configure.ac: 
+	Updated version to 0.7 after a cvs tag version-0_6
+	
+2007-01-22  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/network/udp/Makefile.am:
+	* nucleo/plugins/Makefile.am:
+	* nucleo/plugins/ffmpeg/Makefile.am:
+	Fixed distcheck
+
+2007-01-21  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/udp/StunResolver.cxx: 
+	* nucleo/network/udp/StunResolverPrivate.cxx: 
+	Added documentation links, changed the server order 
+	
+2007-01-17  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/sink/ImageSink.cxx: 
+	glwindowImageSink shouldn't be compiled when OpenGL is not
+	supported...
+
+	* build-utils/bootstrap: 
+	automake 1.10 is out
+	
+2007-01-16  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/TimeStamp.*: 
+	* tests/test-TimeStamp.cxx: 
+	Added <, > and == operators 
+	
+	* nucleo/network/udp/Makefile.am: 
+	* nucleo/network/udp/UdpSocket.*: 
+	* nucleo/network/udp/StunResolver.*: 
+	* nucleo/network/udp/StunResolverPrivate.*:
+	* tests/Makefile.am: 
+	* tests/test-UdpSocket.cxx: 
+	New UdpSocket and StunResolver classes. UdpSocket will probably
+	replace UdpSender and UdpReceiver in the future.
+
+2007-01-15  Nicolas Roussel  <roussel@lri.fr>
+
+	* demos/video/src2files.cxx: 
+	New demo
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx: 
+	Added qmin and qmax parameters (patch submitted by F. Crozat)
+
+	* nucleo/image/source/qtSgImageSource.cxx: 
+	Tried to fix setRate, added getRate
+
+	* tests/test-httpServer.cxx:
+	* tests/test-rdv.cxx: 
+	* demos/misc/disBonjour.cxx: 
+	Replaced the obsolete RendezVous stuff with the new DNS-SD stuff
+
+	* docs/api/plugins/index.html: 
+	* docs/installation.html: 
+	* nucleo/network/Makefile.am: 
+	* nucleo/plugins/Makefile.am: 
+	Removed all references to rdv, added references to dnssd
+
+	* configure.ac: 
+	* nucleo-config.in: 
+	Added DNS-SD, removed Howl
+
+	* nucleo/network/dnssd/Makefile.am: 	
+	* nucleo/network/dnssd/DNSService.H: 
+	* nucleo/network/dnssd/DNSServiceAnnouncer.*: 
+	* nucleo/network/dnssd/DNSServiceBrowser.*: 
+	New, DNS-SD-based, service discovery support
+
+	* nucleo/network/rdv/*: 	
+	* nucleo/plugins/howl/*: 
+	These files are now obsolete and will be removed soon...
+	
+	* nucleo/nucleo.H.in: 
+	* nucleo/nucleo.H: 
+	Replaced the .H with a .H.in file that contains
+	NUCLEO_SUPPORTS_XXX defines
+
+2007-01-11  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/rdv/ServiceAnnouncer.*: 
+	* nucleo/network/rdv/ServiceFinder.H: 
+	* nucleo/network/rdv/mDNSServiceAnnouncer.H: 
+	* nucleo/network/rdv/mDNSServiceFinder.H: 
+	* nucleo/network/rdv/dummyServiceAnnouncer.H: 
+	* tests/test-rdv.cxx: 
+	Another attempt at fixing cache problems / removed host and port
+	parameters for announces
+	
+2007-01-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac: 
+	OS X only: removed the "-flat_namespace -bind_at_load"
+	switches (experimental...)
+
+	* nucleo/core/TimeStamp.cxx: 
+	* tests/test-TimeStamp.cxx:
+	TimeStamp::undef must be a valid value, otherwise one can't create
+	an undefined TimeStamp
+
+	* nucleo/network/rdv/ServiceFinder.*: 
+	* nucleo/network/rdv/mDNSServiceFinder.H: 
+	* nucleo/plugins/howl/howlServiceFinder.*: 
+	* tests/test-rdv.cxx: 
+	* demos/misc/disBonjour.cxx: 
+	The event queue is now part of the ServiceFinder object and
+	doesn't need to be specified by users of this object
+
+	* nucleo/network/rdv/mDNSServiceAnnouncer.H: 
+	Tried to solve some cache-related problems
+	
+	* nucleo/core/UUID.*: 
+	Renamed as_bytes to bytearray, added a new createAsStringFromBytes
+	method
+
+2007-01-07  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/Image.*: 
+	Added a getDescription method
+
+2007-01-06  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/ByteOrder.*: 
+	* tests/test-ByteOrder.cxx: 
+	Added a swap64ifle function
+
+2006-12-30  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/nudpcImageSource.cxx: 
+	Port number obtained from a UdpReceiver is already in host byte
+	order
+
+	* nucleo/network/udp/UdpReceiver.cxx: 
+	Store the port number in host byte order
+
+2006-12-24  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/tcp/TcpUtils.cxx: 
+	Fixed getRemoteTcpHost in the case of an ipv6 socket
+
+2006-12-20  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/gl/shading/glShader.cxx:
+	Fixed for for "glXGetProcAddress" machine
+
+2006-12-19  Olivier Chapuis  <chapuis@lri.fr>
+
+	* configure.ac:
+	* nucleo/gl/shading/glShader.H:
+	* nucleo/gl/shading/glShader.cxx:
+	Tried to fix compilationa and support for "glXGetProcAddress" machine.
+	Added various glUniform* interface functions
+	
+2006-12-19  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/shading/glShader.cxx: 
+	Another attempt at fixing the glXGetProcAddressARB problem
+	
+2006-12-18  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/shading/glShader.cxx: 
+	Second attempt at fixing the glXGetProcAddressARB problem
+
+2006-12-16  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/gl/shading/glShader.H:
+	* nucleo/gl/shading/glShader.cxx:
+	setUniformParam for 1i (for now)
+	
+2006-12-15  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/shading/glShader.cxx:
+	First attempt at fixing the "glXGetProcAddressARB
+	vs. glXGetProcAddress" problem
+
+2006-12-13  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/ByteOrder.cxx: 
+	No more inline functions (their inclusion in sub-libs caused
+	some trouble)
+
+2006-12-12  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/Makefile.am:
+	* nucleo/utils/ByteOrder.*:
+	Moved the OS X ByteOrder stuff in a .cxx file to avoid namespace
+	clashes
+	
+	* nucleo/gl/glUtils.cxx: 
+	Use ByteOrder::isLittleEndian
+
+2006-12-11  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/tcp/Makefile.am: 
+	* nucleo/network/tcp/Ping.*: 
+	* tests/Makefile.am: 
+	* tests/test-Ping.cxx: 
+	New tcp-based Ping class for checking network availability (very
+	simple and probably not very effective)
+
+	* nucleo/gl/shading/glShader.cxx:
+	Use glXGetProcAddressARB instead of glXGetProcAddress
+
+	* docs/shaders/fragment-example.glsl: 
+	* demos/video/simplegl.cxx: 
+	Minor changes
+
+2006-12-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/shading/glShader.*: 
+	* demos/video/simplegl.cxx: 
+	Use function pointers on GLX-based systems
+
+2006-12-08  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/shading/glShader.*: 
+	* docs/shaders/fragment-example.glsl: 
+	Minor fixes
+
+2006-12-07  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/shading/glShader.*: 
+	Enable shaders only if GL_FRAGMENT_SHADER_ARB is defined
+
+	* docs/shaders/fragment-example.glsl: 
+	Added a first shader example to use with simplegl
+	
+	* nucleo/helpers/Phone.H:
+	Fixed a namespace bug
+
+	* nucleo/gl/shading/Makefile.am:
+	* nucleo/gl/shading/glShader.*: 
+	* demos/video/simplegl.cxx: 
+	Added a new glShader class to support GLSL vertex and fragment
+	shaders
+	
+	* nucleo/core/ReactiveEngine.*: 
+	Added a sleep method to ReactiveEngine (untested)
+	
+	* nucleo/helpers/Phone.*: 
+	* tests/test-Phone.cxx: 
+	Added a new class that can dial a phone number by sending AT
+	commands on a serial line
+
+2006-12-03  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/qtMovImageSource.cxx: 
+	Comment out the code that checks if the QuickTime file has a video
+	track. As a consequence, videoClient can now be used as an audio
+	player...
+
+2006-11-29  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/gl/scenegraph/sgViewpoint.cxx:
+	Comment a  debug statement
+	
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	XSync after warpCursor
+	
+2006-11-29  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/scenegraph/sgNode.cxx:
+	* nucleo/gl/scenegraph/sgViewpoint.cxx:
+	Added a few debug statements (commented out, for the moment)
+
+	* configure.ac:
+	Applied two patches from Mandriva that make it possible to disable
+	Qt and Howl
+
+2006-11-29  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/gl/scenegraph/sgNode.H:
+	* nucleo/gl/scenegraph/sgNode.cxx:
+	Cast to sgNode* before casting to GLuint
+	Added a static debugPushName
+	
+2006-11-22  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/window/glWindow.H: 
+	* nucleo/gl/window/glWindow_AGL.*:
+	Added an emulateThreeButtonMouse method that toggles an internal
+	boolean value. When true, optionKey+button emulates a middle mouse
+	button and cmdKey+button emulates a right mouse button.
+
+2006-11-19  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/window/glWindow_AGL.cxx: 
+	Hide the menubar when in fullscreen mode
+
+	Remapped the Apple key to Super_L (and Fn to Hyper_L) so that it
+	can be used as a Windows key replacement in Metisse
+
+	Fixed a long-time bug that caused some Ctrl-??? key
+	combinations (e.g. Ctrl-l) to be reported as
+	commands (e.g. PageDown).
+
+	The Metisse compositor is now more likely to be compiled and used
+	as a nucleo-Carbon application...
+	
+2006-11-06  Nicolas Roussel  <roussel@lri.fr>
+
+	* docs/MacOSX/nBundle.in: 
+	Plug-ins also need to be fixed...
+
+2006-11-06  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/glUtils.cxx: 
+	Fixed an alignment bug in glScreenCapture. Capture will always be
+	made in ARGB and then converted to the requested encoding.
+
+2006-11-04  Olivier Chapuis  <chapuis@lri.fr>
+
+	* configure.ac:
+	Set version to 0.6 as I want to publish a tarball
+	
+	* nucleo/core/select/Makefile.am:
+	Fixed tarball compilation
+
+2006-10-27  Nicolas Roussel  <roussel@lri.fr>
+
+	* docs/starting-point-qt/VideoViewer.cpp: 
+	Replaced getFrameNumber with getFrameCount and getFrameRate with
+	getMeanRate
+
+2006-10-25  Nicolas Roussel  <roussel@lri.fr>
+
+	* docs/MacOSX/nBundle:
+	Bug fix: couldn't find libtoolized app if it was in the current
+	directory
+
+2006-10-24  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/encoding/Conversion.cxx: 
+	Make sure the timestamp is preserved when converting between
+	encodings
+
+2006-10-13  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/TimeUtils.cxx: 
+	Added a reset method
+
+2006-10-12  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/qtMovImageSource.cxx: 
+	Rewind the video when starting it again
+
+2006-10-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/qtMovImageSource.cxx: 
+	Bug fix: timer should be initialized to zero...
+
+2006-10-09  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac:
+	Added -bind_at_load to LDFLAGS on OS X
+	
+	* nucleo/image/ImageBridge.H:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.*:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.*:
+	* nucleo/plugins/vnc/vncImageSource.*:
+	* apps/videoClient.cxx:
+	* apps/videoServer/VideoService.cxx:
+	* apps/videoServer/VideoStreamer.cxx: 
+	* demos/misc/documentOpener.cxx:
+	* demos/misc/multitexture.cxx:
+	* demos/misc/paz.cxx:
+	* demos/opencv/chessboardFinder.cxx:
+	* demos/opencv/morphodemo.cxx:
+	* demos/opencv/faceFinder/faceFinder.cxx:
+	* demos/opencv/opticalFlow/AutoFlow.cxx:
+	* demos/opencv/opticalFlow/GridFlow.cxx:
+	* demos/opencv/opticalFlow/OpticalFlow.*: 
+	* demos/opencv/opticalFlow/miniflow.cxx:
+	* demos/video/blender.cxx:
+	* demos/video/collage.cxx:
+	* demos/video/mini-mirrorSpace.cxx:
+	* demos/video/mini-videoProbe.cxx:
+	* demos/video/multiplex.cxx:
+	* demos/video/simplegl.cxx:
+	* demos/video/timeoverlay.cxx:
+	* demos/vnc/vnc-relay.cxx:
+	* tests/test-TimeStamp.cxx:
+	* tests/test-glTexture.cxx:
+	* tests/test-speed.cxx:
+	ImageSink and ImageSource partial redesign (should be backward-compatible...)
+	
+	* nucleo/image/sink/ImageSink.*:
+	* nucleo/image/sink/bufferedImageSink.*:
+	* nucleo/image/sink/glwindowImageSink.*:
+	* nucleo/image/sink/imagefileImageSink.H:
+	* nucleo/image/sink/nserverImageSink.H:
+	* nucleo/image/sink/nudpImageSink.*:
+	* nucleo/image/sink/nudppImageSink.*:
+	* nucleo/image/sink/qtMovImageSink.*:
+	* nucleo/image/sink/serverpushImageSink.*:
+	ImageSink partial redesign (should be backward-compatible...)
+	
+	* nucleo/image/source/ImageSource.*:
+	* nucleo/image/source/imagefileImageSource.H:
+	* nucleo/image/source/noiseImageSource.*:
+	* nucleo/image/source/nucImageSource.*:
+	* nucleo/image/source/nudpImageSource.*:
+	* nucleo/image/source/nudpcImageSource.*:
+	* nucleo/image/source/nudppImageSource.*:
+	* nucleo/image/source/qtMovImageSource.*:
+	* nucleo/image/source/qtSgImageSource.*:
+	* nucleo/image/source/serverpushImageSource.*:
+	* nucleo/image/source/vssImageSource.*:
+	ImageSource partial redesign (should be backward-compatible...)
+	
+	* nucleo/image/encoding/JPEG.cxx: 
+	* nucleo/image/encoding/PAM.cxx: 	
+	* nucleo/image/encoding/PNGenc.cxx: 	
+	Set the timestamp on encoded and decoded images
+
+	* nucleo/gl/texture/glTexture.cxx: 
+	Temporary hack to fix a bug that seems related to OS X 10.4.8:
+	mipmaps are now disabled by default on OS X
+
+2006-10-08  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/URI.*: 
+	Added a getQueryArg method for TimeStamps
+
+2006-10-05  Nicolas Roussel  <roussel@lri.fr>
+
+	* docs/MacOSX/nBundle.in:
+	Change the shared library identification name of dynamic shared
+	libraries (and not only the name of the libs they depend on)
+
+2006-09-20  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/carbon/cReactiveEngine.cxx: 
+	* nucleo/core/corefoundation/cfReactiveEngine.cxx: 
+	Fixed an EXC_BAD_ACCESS bug related to nested ReactiveEngine::step
+
+2006-09-19  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/tcp/TcpUtils.cxx: 
+	Re-enable TCP_NODELAY and TCP_FASTACK in
+	setDefaultTcpSocketOptions (why were they disabled?)
+
+2006-09-19  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/http/HttpMessage.H:
+	Added getHeader methods for common types
+
+2006-09-11  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/TimeStamp.*: 
+	Added undef, min and max constants
+	
+	* nucleo/image/Image.*: 
+	Use TimeStamp::undef for undefined timestamps
+
+	* nucleo/network/http/HttpMessage.cxx: 
+	Automatically adjust read buffer size to body size as long as it's
+	below a certain value
+
+2006-09-04  Nicolas Roussel  <roussel@lri.fr>
+
+	* docs/MacOSX/index.html: 
+	FFmpeg doc update
+
+2006-09-01  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/ReactiveObject.H: 
+	subscribeTo and unsubscribeFrom are now public
+
+2006-08-28  Nicolas Roussel  <roussel@lri.fr>
+
+	* docs/api/sources/file.html: 
+	* nucleo/image/source/vssImageSource.*: 
+	* nucleo/image/source/nucImageSource.*: 
+	* nucleo/image/source/nspImageSource.*: 
+	* nucleo/image/source/Makefile.am: 
+	Renamed nspImageSource to vssImageSource, created a new nucImageSource
+	
+2006-08-15  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac: 
+	Added an AC_CHECK_LIB for pthread (used by some GL libs)
+
+	* nucleo/network/rdv/Service.H: 
+	Added missing include (stdint.h)
+
+2006-08-14  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/Image.*: 
+	* nucleo/image/sink/bufferedImageSink.cxx:
+	* nucleo/image/sink/nserverImageSink.H:
+	* nucleo/image/sink/serverpushImageSink.cxx:
+	More timestamp-related changes
+	
+2006-08-14  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/Makefile.am: 
+	* nucleo/image/source/ImageSource.cxx: 
+	* nucleo/image/source/qtImgImageSource.*:
+	Removed the qtImgImageSource class which wasn't used anymore
+	
+2006-08-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/encoding/JPEG.cxx (nucleo): 
+	Bug fix: replace HAVE_LIBEXIF with HAVE_EXIF
+
+2006-07-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/http/HttpMessage.*: 
+	Next and reset can now optionally clear the internal buffer
+
+2006-07-09  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/FileUtils.*: 
+	File size returned by getFileSize can be *really* big...
+
+2006-07-08  Nicolas Roussel  <roussel@lri.fr>
+
+	* tests/test-TimeStamp.cxx: 
+	* nucleo/core/TimeStamp.*: 
+	Timestamp strings are now UTC, new getAsLocalTime method
+
+	* nucleo/image/encoding/JPEG.cxx: 
+	Cleaned a few method/function names
+
+	* nucleo/image/source/v4lImageSource.*: 
+	v4lImageSource is now declared in the nucleo namespace
+	
+	* nucleo/plugins/qt/*: 
+	* nucleo/plugins/ffmpeg/*: 
+	* nucleo/plugins/vnc/*: 
+	Plug-in stuff is now declared in the nucleo namespace
+
+2006-07-05  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/rdv/Service.H: 
+	* nucleo/network/rdv/ServiceAnnouncer.*: 
+	* nucleo/network/rdv/ServiceFinder.*: 
+	* nucleo/network/rdv/mDNSServiceAnnouncer.H: 
+	* nucleo/network/rdv/mDNSServiceFinder.H: 
+	Use uint16_t and network byte order for the port number
+
+2006-07-04  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/qtSgImageSource.*:
+	qtSgImageSource can now be started/stopped/restarted and supports
+	a "locked" option
+	
+	* docs/style.html:
+	* docs/index.html:
+	* docs/installation.html:
+	* docs/todo.html:	
+	* docs/api/plugins/index.html:
+	* docs/api/sources/videoin.html:
+	* docs/starting-point-qt/VideoViewer.cpp:
+	* docs/starting-point-qt/VideoViewer.h:
+	* docs/starting-point-qt/viewer.cpp:
+	* docs/starting-point-qt/viewer.pro:
+	Documentation update
+	
+2006-06-27  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/sink/nserverImageSink.H: 
+	* nucleo/image/sink/serverpushImageSink.cxx: 
+	Added a nucleo-timestamp header to every server-pushed image
+	
+	* nucleo/image/sink/qtMovImageSink.cxx: 
+	Added support for the following codecs: cinepak, h261, h263
+	
+	* nucleo/image/Image.cxx (nucleo): 
+	Renamed image/vnd.nucleo.565 to image/vnd.nucleo.RGB565
+	
+	* apps/videoClient.cxx: 
+	Fixed the "Segmentation fault" bug when the sink is closed
+
+	* nucleo/image/encoding/Conversion.cxx: 
+	Added missing ARGB2YpCbCr420 conversion
+	
+2006-06-26  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/ImageSource.cxx: 
+	* nucleo/image/sink/ImageSink.cxx: 
+	Give the plugin system a chance to open file sources and sinks
+	
+	* nucleo/core/URI.*: 
+	asString is a const method
+	
+	* nucleo/utils/Makefile.am: 	
+	* nucleo/utils/ByteOrder.H: 	
+	* tests/Makefile.am: 	
+	* tests/test-ByteOrder.cxx (main): 
+	* nucleo/plugins/vnc/vncImageSource.cxx: 
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx: 
+	New Byte-Order utilities
+	
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx: 
+	PIX_FMT_RGBA32 is endian-sensitive...
+
+2006-06-21  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac: 
+	* nucleo-config.in: 
+	* apps/videoClient.cxx: 
+	* apps/videoServer/main.cxx: 
+	* nucleo/core/FileKeeper.*: 
+	* nucleo/core/TimeKeeper.*: 	
+	* nucleo/core/corefoundation/*:
+	* nucleo/core/carbon/*: 
+	* nucleo/core/select/*: 
+	* nucleo/plugins/qt/*: 
+	* nucleo/plugins/howl/howlKeeper.cxx:
+	More ReactiveEngine choices (e.g. qt)
+
+	* nucleo/gl/window/glWindow_AGL.cxx: 
+	Added a missing call to aglDestroyPixelFormat
+	
+	* nucleo/gl/text/glString.H: 
+	Clear the string when it is deleted (de-allocate the glyphs)
+
+	* nucleo/core/TimeStamp.*: 
+	Added a subsecond flag to the getAsString method
+
+	* nucleo/core/TimeKeeper.H: 
+	1 minute = 60000 milliseconds, not 1000000...
+
+2006-06-14  Nicolas Roussel  <roussel@lri.fr>
+	
+	* tests/test-ReactiveEngine.cxx:
+	* tests/test-SocketKeeper.cxx:	
+	* tests/test-TimeKeeper.cxx:	
+	* tests/test-FileKeeper.cxx:
+	Minor changes in order to compare the qt plugin with other engines
+
+	* tests/Makefile.am: 
+	* tests/test-ffmpeg-sink.cxx: 
+	Removed the FFmpeg test program (use "videoClient -o ffmpeg-file:toto.mpg" instead)
+
+2006-06-02  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac:
+	* demos/Makefile.am:
+	* demos/opencv/*:
+	Added some OpenCV demos
+
+	* nucleo/image/source/qtSgImageSource.cxx: 
+	* nucleo/gl/window/glWindow_AGL.*: 
+	OS X: Connect to the window server before displaying SG dialog
+	
+2006-06-02  Olivier Chapuis  <chapuis@lri.fr>
+
+	* configure.ac: 
+	Print nucleo config at the end of ./configure
+	
+2006-06-01  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac:
+	Look for Freetype in $PATH:/usr/X11R6/bin
+
+	* tests/test-glTexture.cxx:
+	* tests/test-glWindow.cxx: 
+	* nucleo/image/sink/glwindowImageSink.cxx: 
+	Text can be displayed only if Freetype is available...
+
+	* tests/Makefile.am: 
+	test-glString requires Freetype
+	
+	* demos/video/Makefile.am:
+	simplegl requires Freetype
+
+2006-05-31  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/StringUtils.cxx (nucleo): 
+	Probably fixed the "explicit instantiation of" error
+	Check https://bugzilla.redhat.com/bugzilla/show_bug.cgi?id=177081
+	
+2006-05-31  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/utils/StringUtils.cxx: 
+	Try to fix the "explicit instantiation of" error
+	
+	* demos/misc/Makefile.am: 
+	multitexture does not compile for unknown reason on certain Linux/Nvidia
+	config ...disable its build
+
+2006-05-30  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/Makefile.am: 
+	* nucleo/helpers/Makefile.am: 
+	* nucleo/helpers/AppleIRController.*: 	
+	* tests/Makefile.am: 
+	* tests/test-AppleIRController.cxx: 
+	OS X: Added a new class to receive events from an infrared remote
+	control
+	
+2006-05-26  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac:
+	OS X: Put back -O3 instead of -fast (causes a "XXX has local
+	relocation entries in non writable section" error on PowerPC)
+
+2006-05-26  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac: 
+	OS X: use -fast instead of -O3 and QuartzCore (for video capture)
+
+	* nucleo/image/source/qtSgImageSource.*: 
+	New video grabber wrapper (uses QuartzCore instead of QuickDraw)
+
+	* nucleo/image/processing/basic/Resize.cxx (nucleo): 
+	Fixed a bug in cropImage when it was asked to keep the whole image
+	and its size was bigger than supposed to be (i.e. size > w*h*bpp)
+	
+2006-04-23  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/carbon/cFileKeeper.cxx: 
+	* nucleo/core/carbon/cReactiveEngine.*: 
+	Less Carbon, more CoreFoundation
+
+	* nucleo/gl/window/glWindow.cxx:
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	* nucleo/image/sink/glwindowImageSink.cxx:
+	No more glWindow::resize, minor fixes
+
+2006-04-13  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/carbon/cTimeKeeper.*: 
+	Don't use Carbon stuff anymore, use CoreFoundation instead
+	
+2006-04-12  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/carbon/cFileKeeper.*: 
+	Don't use Carbon stuff anymore, use CoreFoundation instead
+	Removed a timer for detecting dead sockets that now seems unnecessary
+
+2006-03-17  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/texture/glTextureTile.cxx: 
+	Skip the maximum texture size test if maxsize is null
+
+2006-03-12  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/image/processing/basic/Paint.cxx: 
+	RGB565 implementation
+
+2006-03-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/FileUtils.cxx (nucleo): 
+	Replaced st_mtimespec with st_mtime
+
+2006-03-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* docs/todo.html:
+	* nucleo/core/TimeStamp.*:
+	* nucleo/core/carbon/cTimeKeeper.*:
+	* nucleo/core/select/sTimeKeeper.*:
+	* nucleo/image/Image.H:
+	* nucleo/image/sink/bufferedImageSink.cxx:
+	* nucleo/image/sink/qtMovImageSink.*:
+	* nucleo/image/source/imagefileImageSource.H:
+	* nucleo/image/source/noiseImageSource.cxx:
+	* nucleo/image/source/qtImgImageSource.cxx:
+	* nucleo/image/source/qtMovImageSource.cxx:
+	* nucleo/image/source/v4lImageSource.cxx:
+	* nucleo/utils/FileUtils.*:
+	* nucleo/utils/TimeUtils.*:
+	* tests/test-TimeStamp.cxx 
+	TimeStamp revisited
+
+2006-03-09  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/sink/bufferedImageSink.H: 
+	Two new methods: clear and flush
+
+	* nucleo/image/source/qtSgImageSource.cxx: 
+	Set the timestamp field
+	
+2006-03-07  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/Image.*:
+	Added a timestamp field to Image
+	
+	* nucleo/image/sink/Makefile.am: 
+	* nucleo/image/sink/bufferedImageSink.H: 
+	New buffered ImageSink (wraps around another sink)
+
+2006-03-04  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/Image.cxx: 
+	Cast the unsigned char* pointer to void* in Image::debug
+
+2006-03-03  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/udp/UdpReceiver.H: 
+	* nucleo/network/udp/UdpReceiver.cxx: 
+	New constructors that accept an std::string instead of a char*
+
+2006-02-25  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/Makefile.am: 
+	* nucleo/core/TimeStamp.*: 	
+	* tests/Makefile.am: 
+	* tests/test-TimeStamp.cxx: 	
+	* nucleo/utils/TimeUtils.*:
+	* nucleo/core/carbon/cTimeKeeper.cxx:
+	* nucleo/core/select/sTimeKeeper.cxx:
+	* nucleo/image/sink/qtMovImageSink.cxx:
+	New TimeStamp class, obsoletes getCurrentTimeAsMillisecs
+	
+	* nucleo/utils/MD5.*:
+	* tests/test-MD5.cxx: 
+	* tests/Makefile.am: 	
+	MD5 implementation
+
+2006-02-24  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/sink/glwindowImageSink.cxx: 
+	* nucleo/image/source/v4lImageSource.cxx:
+	Fixed URI-related things that were left over
+
+	* nucleo/network/Makefile.am: 
+	* nucleo/network/Base64.*: 
+	* nucleo/utils/Makefile.am:
+	* nucleo/utils/Base64.*:
+	* nucleo/utils/MD5.*:
+	* tests/test-Base64.cxx: 
+	Moved Base64 stuff from network/ to utils/
+	Added MD5 placeholders
+
+	* build-utils/bootstrap:
+	Fixed a bug with aclocal 1.7* (no --force option)
+
+2006-02-23  Nicolas Roussel  <roussel@lri.fr>
+
+	* docs/installation.html: 
+	Added information about the CVS repository
+
+	* nucleo/network/Base64.*: 
+	* tests/test-Base64.cxx: 
+	New Base64 encode/decode functions
+
+2006-02-22  Nicolas Roussel  <roussel@lri.fr>
+
+	* all apps, demos and tests:
+	Removed initNucleo and moved the OS X WindowServer trick in glWindow_AGL
+	Revamped URI class
+	
+	* nucleo/core/URI.*:
+	* nucleo/gl/text/glFontManager.cxx:
+	* nucleo/image/sink/ImageSink.cxx:
+	* nucleo/image/sink/glwindowImageSink.cxx:
+	* nucleo/image/sink/imagefileImageSink.H:
+	* nucleo/image/sink/nserverImageSink.H:
+	* nucleo/image/sink/nudpImageSink.cxx:
+	* nucleo/image/sink/nudppImageSink.cxx:
+	* nucleo/image/sink/qtMovImageSink.cxx:
+	* nucleo/image/sink/serverpushImageSink.cxx:
+	* nucleo/image/source/ImageSource.cxx:
+	* nucleo/image/source/imagefileImageSource.H:
+	* nucleo/image/source/noiseImageSource.cxx:
+	* nucleo/image/source/nspImageSource.cxx:
+	* nucleo/image/source/nudpImageSource.cxx:
+	* nucleo/image/source/nudpcImageSource.cxx:
+	* nucleo/image/source/nudppImageSource.cxx:
+	* nucleo/image/source/qtImgImageSource.cxx:
+	* nucleo/image/source/qtMovImageSource.cxx: 
+	* nucleo/image/source/qtSgImageSource.cxx:
+	* nucleo/image/source/serverpushImageSource.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx:
+	* nucleo/plugins/vnc/vncImageSource.cxx:
+	Revamped URI class
+	
+	* nucleo/network/tcp/TcpUtils.*:
+	* nucleo/network/tcp/TcpConnection.cxx:
+	Added a getRemoteTcpHost function
+	
+	* nucleo/utils/StringUtils.*:
+	Added a findAndReplace function
+	
+	* nucleo/nucleo.H:
+	* nucleo/nucleo.cxx:
+	* nucleo/gl/window/glWindow_AGL.H :
+	* nucleo/gl/window/glWindow_AGL.cxx:
+	Removed initNucleo and moved the OS X WindowServer trick in glWindow_AGL
+
+2006-01-19  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/nspImageSource.*: 
+	Added an option to request that an nspImageSource keeps reading
+	when it reaches the end of a file
+
+2006-01-11  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/glIncludes.H.in: 
+	Bug fix: we should include GL/*.h only if we have GLX
+
+2006-01-10  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/ImageSource.cxx:
+	Bug fix (JPEG and PNG images were not loading anymore).
+
+	* nucleo/utils/AppUtils.*:
+	* nucleo/nucleo.H:
+	* nucleo/config.cxx:
+	New initNucleo function, moved some stuff from AppUtils.cxx to
+	nucleo.cxx
+
+	Lots of other changes to add a call to initNucleo in various
+	programs.
+	
+2005-12-02  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/AppUtils.cxx: 
+	Added some black magic to set the OS X dock icon of command-line
+	applications. Again, applications MUST call parseCommandLine for
+	this magic to work...
+
+2005-11-30  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/AppUtils.cxx: 
+	Added some black magic tricks that make the OS X nTest script
+	obsolete (i.e. connects the nucleo process to the window server if
+	it's not part of a bundle). Applications MUST call parseCommandLine
+	for this magic to work...
+
+	* nucleo/core/URI.H:
+	Added a getQueryArg method for booleans.
+
+	* nucleo/image/source/*: 
+	All image source constructors now take the URI as the first
+	argument.
+
+2005-11-28  Nicolas Roussel  <roussel@lri.fr>
+	
+	* apps/videoServer/VideoService.cxx:
+	Use the user-agent header to decide whether PUSH or GRAB should be
+	used (PUSH only to nucleo or Gecko-based clients).
+
+2005-11-27  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/processing/basic/Resize.H:
+	* nucleo/image/processing/basic/Resize.cxx: 
+	New crop function.
+
+	* nucleo/image/source/ImageSource.H:
+	* nucleo/image/source/nudpImageSource.cxx:
+	* nucleo/image/source/qtMovImageSource.cxx:
+	* nucleo/image/source/qtSgImageSource.cxx:
+	* nucleo/image/sink/ImageSink.H:
+	* nucleo/image/sink/nudpImageSink.cxx:
+	* nucleo/image/sink/qtMovImageSink.cxx:
+	Minor bug fixes.
+
+2005-11-17  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac:
+	* docs/todo.html:
+	* nucleo/image/encoding/Makefile.am:
+	* nucleo/image/encoding/Conversion.cxx:
+	* nucleo/image/encoding/RGB565.H:
+	* nucleo/image/encoding/RGB565.cxx:
+	* nucleo/image/encoding/RGBAL.H:
+	* nucleo/image/processing/basic/Resize.cxx: 
+	* nucleo/image/processing/basic/Paint.H:
+	* nucleo/image/processing/basic/Paint.cxx:
+	* nucleo/image/processing/basic/Transform.cxx:
+	Use the Accelerate framework on OS X for some ARGB operations 
+
+2005-11-17  Olivier Chapuis  <chapuis@lri.fr>
+	
+	* configure.ac:
+	AC_PREREQ(2.58)
+
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	Set geometry before mapping
+
+	* nucleo/plugins/ffmpeg/Makefile.am:
+	Added mpg and avi
+	
+2005-11-14  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/processing/basic/Paint.H:
+	* nucleo/image/processing/basic/Paint.cxx:
+	New drawRectangle function
+
+2005-11-13  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/helpers/Makefile.am:
+	* nucleo/helpers/OpenCV.H 
+	New OpenCV helper
+	
+	* configure.ac:
+	* nucleo-config.in:
+	* build-utils/bootstrap:
+	* nucleo.pc.in:	
+	* nearly all Makefile.am files:
+	* some documentation files:
+	* and many other files...:
+	Build system update, should make the whole thing easier to port to
+	other systems
+
+	* nucleo/image/RegionOfInterest.H: 
+	Added a new struct for ROIs
+
+2005-10-14  Nicolas Roussel  <roussel@lri.fr>
+
+	* demos/video/multiplex.cxx:
+	* nucleo/gl/texture/glTextureTile.cxx:
+	* nucleo/image/Image.cxx:
+	* nucleo/image/processing/gamma/GammaCorrection.cxx:
+	Various bug fixes
+	
+	* nucleo/image/source/nudpImageSource.cxx:
+	* nucleo/image/source/nudppImageSource.cxx:
+	Fixed nudp-related memory leak
+	
+	* nucleo/network/NetworkUtils.H:
+	* nucleo/network/NetworkUtils.cxx:
+	Added a getHostName function to NetworkUtils
+
+2005-09-06  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/sink/glwindowImageSink.cxx (nucleo): 
+	Fixed a bug related to URI::getPort (GLX only)
+
+2005-09-02  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/select/sReactiveEngine.cxx (nucleo):
+	Fixed a bug related to select-based timers (a TRIGGERED_AND_ARMED
+	timer should be considered as an ARMED one)
+
+	* nucleo/image/sink/nserverImageSink.H:
+	Added a debug option to nserverImageSink that displays the IP
+	address (or name) of each remote client
+
+2005-08-16  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/plugins/ffmpeg/Makefile.am:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.H:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	New ffmpegImageSink
+
+	* nucleo/core/URI.H:
+	* nucleo/core/URI.cxx:
+	* nucleo/image/sink/nserverImageSink.H:
+	* nucleo/image/sink/nudpImageSink.cxx:
+	* nucleo/image/sink/nudppImageSink.cxx:
+	* nucleo/image/source/nudpImageSource.cxx:	
+	* nucleo/image/source/nudpcImageSource.cxx:
+	* nucleo/image/source/nudppImageSource.cxx:
+	* nucleo/image/source/serverpushImageSource.cxx:
+	* nucleo/plugins/vnc/vncImageSource.cxx:
+	URI::getPort now returns an int (and not a std::string)
+
+2005-08-07  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/source/ImageSource.cxx:
+	* nucleo/image/source/qtMovImageSource.cxx:
+	* nucleo/plugins/ffmpeg/Makefile.am: 
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.H:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx:
+	Fixed the ffmpeg image source
+
+2005-07-12  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/gl/window/glWindow_GLX.cxx (nucleo): 
+	Fixed compilation
+
+	* apps/videoServer/Makefile.am:
+	Fixed make dist
+	
+2005-07-11  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/texture/glTexture*: 
+	Texture implementation update
+
+	* nucleo/gl/window/glWindow.H: 
+	New method: event *getNextEvent(void)
+
+	* nucleo/image/Image.cxx (nucleo): 
+	RGB565 is now convenient (filters have not been tested...)
+
+	* nucleo/network/tcp/BufferedTcpConnection.H: 
+	New class: BufferedTcpConnection (inherits from TcpConnection)
+
+2005-06-09  Nicolas Roussel  <roussel@lri.fr>
+		
+	* nucleo/image/Image.H:
+	* nucleo/image/Image.cxx:
+	* nucleo/image/processing/basic/Paint.cxx:
+	* nucleo/image/processing/difference/Difference.cxx:
+	* nucleo/image/processing/gamma/GammaCorrection.cxx:
+
+	Image MUST be CONVENIENT in drawImageInImage
+	Added RGBA to the list of CONVENIENT formats (might require some more work...)
+
+	* nucleo/core/ReactiveObject.H:
+	* nucleo/core/core/ReactiveObject.cxx:
+	Inlined Observable::isAlive
+	
+	* nucleo/gl/window/glWindow.H:
+	* nucleo/gl/window/glWindow.cxx:
+	* nucleo/gl/window/glWindow_AGL.cxx:
+	Inlined glWindow::event constructor
+	Fixed a bug in glWindow_AGL::setCursorVisible
+		
+	* nucleo/network/tcp/TcpConnection.H:
+	* nucleo/network/tcp/TcpConnection.cxx:
+	Inlined the react method
+		
+	* nucleo/utils/AppUtils.H: 
+	Added a virtual destructor to DocumentOpener
+
+	* tests/test-glWindow.cxx:
+	Added a key-binding for cursor visibility
+
+2005-06-06  Olivier Chapuis  <chapuis@lri.fr>
+
+	* demos/misc/disBonjour.cxx:
+	Include unistd.h
+
+	* nucleo/image/processing/basic/Paint.cxx (drawImageInImage):
+	Do not convertImage to Image::CONVENIENT in drawImageInImage
+
+2005-05-09  Nicolas Roussel  <roussel@lri.fr>
+
+	* apps/videoServer/FileStreamer.cxx:
+	* nucleo/image/source/nspImageSource.cxx:
+	* nucleo/image/source/nudpcImageSource.cxx:
+	* nucleo/image/source/serverpushImageSource.cxx:
+	* nucleo/network/http/HttpMessage.H:
+	* nucleo/network/http/HttpMessage.cxx:
+	* nucleo/network/udp/UdpPlusReceiver.cxx:
+	* nucleo/network/udp/UdpReceiver.H:
+	* nucleo/network/udp/UdpReceiver.cxx:
+	* nucleo/network/udp/UdpSender.cxx:
+	* nucleo/plugins/vnc/vncImageSource.cxx:
+	* nucleo/utils/FileUtils.cxx:
+	Removed almost all calls to getavail
+
+	* nucleo/image/source/Makefile.am:
+	* nucleo/image/source/ImageSource.cxx:
+	* nucleo/image/source/imagefileImageSource.H:
+	* nucleo/image/source/qtImgImageSource.H:
+	* nucleo/image/source/qtImgImageSource.cxx:
+	New QuickTime file source
+	
+	* nucleo/core/UUID.cxx:
+	* nucleo/gl/scenegraph/sgNode.cxx:
+	* nucleo/gl/text/glString.cxx:
+	* nucleo/gl/texture/glTextureTile.cxx:
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	* nucleo/image/Image.H:
+	* nucleo/image/Image.cxx 
+	* nucleo/image/encoding/RGBAL.H:
+	* nucleo/image/encoding/JPEG.cxx:
+	* nucleo/image/encoding/PAM.cxx:
+	* nucleo/image/encoding/PNGenc.cxx:
+	* nucleo/image/source/nudppImageSource.cxx:
+	* nucleo/network/udp/UdpPlusReceiver.cxx:
+	* nucleo/image/processing/difference/Difference.cxx:
+	* nucleo/image/processing/basic/Paint.cxx:
+	* nucleo/image/processing/basic/Resize.cxx:
+	* nucleo/image/processing/basic/Transform.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx:
+	* tests/test-ffmpeg-sink.cxx:
+	* nucleo/plugins/vnc/vncImageSource.cxx:
+	Replaced memcpy with memmove
+	
+	* nucleo/gl/texture/glTexture.*: 
+	Bug fix: if the textured image encoding has changed, "update" will
+	now call "load"
+	
+2005-05-03  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/image/encoding/PNG.H:
+	* nucleo/image/encoding/PNG.cxx:	
+	* nucleo/image/encoding/PNGenc.H:
+	* nucleo/image/encoding/PNGenc.cxx:	
+	Renamed PNG.* to PNGenc.* to avoid problems with png.h
+
+2005-04-26  Nicolas Roussel  <roussel@lri.fr>
+
+	* demos/misc/Makefile.am:
+	* demos/misc/documentOpener.cxx:
+	* demos/video/Makefile.am:
+	* demos/video/collage.cxx:
+	* demos/video/timeoverlay.cxx:
+	New demos
+
+	* docs/todo.html:
+	Documentation update
+
+	* nucleo/image/sink/qtMovImageSink.cxx:
+	Bug fix (add the last image to the movie)
+	Default encoding is now kRawCodecType
+
+2005-04-19  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/image/sink/serverpushImageSink.cxx:
+	Included stdio.h and unistd.h
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.H:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx:
+	Fixes to support some change in ffmpeg
+	
+2005-04-19  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/utils/AppUtils.*: 
+	Added OS X support for opening documents by dropping them on the
+	application's icon
+
+	* nucleo/gl/window/glWindow_AGL.cxx (nucleo): 
+	First modifications for supporting drag and drop operations
+
+	* nucleo/gl/window/glWindow.*: 
+	* nucleo/gl/window/_events.H: 
+	* nucleo/gl/window/_extEvents.H: 
+	* nucleo/gl/window/glWindow_GLX.cxx: 	
+	Cosmetic changes (for the moment...)
+	
+	* nucleo/gl/glUtils.H: 
+	Now includes glu.h
+	
+	* nucleo/image/processing/basic/Paint.cxx: 
+	Added a faster way of placing an image on another if the
+	dimensions are the same and the origin is 0,0
+
+	* nucleo/image/source/qtMovImageSource.*: 
+	* nucleo/image/sink/qtMovImageSink.*:
+	QuickTime update and bug fixes
+
+	* nucleo/image/sink/glwindowImageSink.cxx:	
+	Notify the observers when the user closes the window
+
+2005-03-19  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/gl/scenegraph/sgNode.cxx:
+	* nucleo/gl/scenegraph/sgNode.H:
+	New interface functions hide, unHide to hide and unhide a node in
+	the scene without remove it and readd it. New interface functions
+	getTransformation and setTransformation to apply a transformation
+	from an other node.
+
+2004-11-30  Olivier Chapuis  <olivier.chapuis@lri.fr>
+
+	* nucleo/gl/glUtils.cxx:
+	* nucleo/image/Image.H:
+	* nucleo/image/Image.cxx:
+	* nucleo/image/encoding/Conversion.cxx:
+	* nucleo/image/encoding/Makefile.am:
+	* nucleo/image/encoding/PNG.cxx:
+	* nucleo/image/encoding/RGBAL.H:
+	* nucleo/image/encoding/RGB565.cxx (New file):
+	* nucleo/image/encoding/RGB565.H (New file):
+	Added RGB565 and RGBA image encoding
+
+	* nucleo/configure.ac:
+	* nucleo/gl/glUtils.cxx:
+	Added BIGENDIAN test and fixed Image::ARGB texture on littel endian
+	arch
+
+	* nucleo/plugins/Makefile.am (plugin-list):
+	make clean should rm the plugin-list. make distcheck succeed!
+
+	* apps/videoServer/Makefile.am:
+	Fixed make dist by adding the headers to the tarball
+
+	* apps/videoServer/Notifier.cxx:
+	Fixed compilation by including unistd.h
+
+2004-11-30  Olivier Chapuis  <olivier.chapuis@lri.fr>
+	
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	* nucleo/gl/window/glWindow_GLX.H:
+	* nucleo/gl/window/glWindow.H:
+	* nucleo/gl/window/glWindow.cxx:
+	Some functions for controlling the accel of a pointer (core or
+	extension)
+	
+	* nucleo/gl/window/glWindow_AGL.H:
+	* nucleo/gl/window/glWindow_AGL.cxx:
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	* nucleo/gl/window/glWindow_GLX.H:
+	* nucleo/gl/window/glWindow.H:
+	New interface function
+		setGeometry(unsigned int width, unsigned int height)
+	which just sets the width and the height and not the position
+	
+2004-11-29  Olivier Chapuis  <olivier.chapuis@lri.fr>
+
+	* nucleo/gl/window/glWindow_GLX.cxx: 
+	Try to load a GLX visual without stencil if glXChooseVisual fail
+	with one
+
+	* nucleo/network/tcp/TcpConnection.H: 
+	Fixed compilation
+
+2004-11-11  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/plugins/Makefile.am:
+	* nucleo/plugins/howl/Makefile.am:
+	* nucleo/plugins/vnc/Makefile.am:
+	* nucleo/plugins/howl/Makefile.am:
+	Fixed plugin-list construction
+
+2004-11-11  Olivier Chapuis  <chapuis@lri.fr>
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx: 
+	* nucleo/gl/texture/glTexture.cxx:
+	* configure.ac:
+	Added an --enable-warnings option to configure which just add -Wall
+	to the CXXFLAGS. Some -Wall fixes
+
+	* nucleo/configure.ac:
+	* nucleo-config.in:
+	* nucleo/gl/window/Makefile.am:
+	* nucleo/gl/window/_extEvents.H (new file):
+	* nucleo/gl/window/_events.H:
+	* nucleo/gl/window/glWindow.H:
+	* nucleo/gl/window/glWindow.cxx:
+	* nucleo/gl/window/glWindow_GLX.H:
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	* nucleo/gl/window/keysym.H:
+	Added support for extension devices for GLX with the XInput X11
+	extension. Added FocusIn and FocusOut events.
+
+	* nucleo/gl/text/glFont.cxx:
+	Do not set the texture tre policy
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	Fixed compilation vs URL/URI files	
+
+2004-11-03  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/URL.*:
+	* nucleo/core/URI.*:
+	* lots of other files...
+	What was called URL was in fact URI (URL+URN)
+	Lots of search and replace...
+
+2004-10-26  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/core/UUID.*:
+	* nucleo/utils/ConfigDict.*:
+	* lots of other files...
+	Added ConfigDict and UUID classes plus some test applications
+	Fixed a lot of minor bugs on Mac OS X
+
+2004-09-29  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/texture/glTexture.*:
+	Added some class variables to specify default values for filters, etc.
+
+2004-09-17  Olivier Chapuis  <olivier.chapuis@lri.fr>
+
+	* nucleo/plugins/ffmpeg/Makefile.am:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.H:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx:
+	Fixed; need more work
+
+2004-09-12  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/texture/glTexture.cxx:
+	Check the image encoding before creating any tile 
+	
+	* nucleo/network/tcp/TcpServer.H:
+	* nucleo/network/udp/UdpReceiver.H:
+	Added a reference to IANA well-known ports
+	
+	* nucleo/network/rdv/ServiceAnnouncer.H:
+	* nucleo/network/rdv/cfServiceAnnouncer.H:
+	* nucleo/network/rdv/cfServiceFinder.H:
+	* tests/test-rdv.cxx:
+	Fixed on OS X Panther (Tiger version introduced a few bugs...)
+
+2004-09-11  Olivier Chapuis  <olivier.chapuis@lri.fr>
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.H 
+	* nucleo/plugins/ffmpeg/Makefile.am:
+	Fixed ffmpeg, avi (mpeg4) and asf (ms mpeg4 v3) work again.
+	Should add a codec options as in qtMovIlageSink ...
+
+2004-09-10  Olivier Chapuis  <olivier.chapuis@lri.fr>
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.H: 
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	Play with the code ... work in progress ...
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.H: 
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.H: 
+	* nucleo/plugins/ffmpeg/ffmpegImageSink.cxx:
+	* nucleo/image/sink/Makefile.am:
+	* nucleo/image/source/Makefile.am:
+	* nucleo/network/rdv/dummyServiceAnnouncer.H:
+	* tests/test-ffmpeg-sink.cxx:
+	Fixed compilation and make dist
+
+2004-07-13  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/network/rdv/Makefile.am: 
+	* nucleo/network/rdv/cfServiceAnnouncer.H:
+	* nucleo/network/rdv/ServiceAnnouncer.H:
+	* nucleo/network/rdv/cfServiceFinder.H:
+	* nucleo/network/rdv/ServiceFinder.H:	
+	* tests/test-rdv.cxx:	
+	Added native Rendezvous support on OS X
+	
+	* docs/todo.html:
+	* nucleo/core/PluginManager.cxx:
+	* nucleo/image/sink/qtMovImageSink.cxx:
+	* nucleo/network/udp/UdpPlusReceiver.cxx:
+	Minor fixes
+
+2004-07-05  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* build-utils/Makefile.am:
+	* build-utils/rpm/Makefile.am:
+	* build-utils/rpm/nucleo.spec.in:
+	* configure.ac:
+	Moved rpm/ to build-utils/rpm/
+	
+2004-07-01  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* configure.ac:
+	If GL/gl.h is found, but if either libGL, LibGLU or GL/glx.h is not
+	found generate an error
+
+	* nucleo/core/carbon/Makefile.am:
+	Fixed build of the make dist tarball
+
+	* rpm/Makefile.am:
+	* rpm/nucleo.spec.in:
+	Fixed dependencies
+
+	* nucleo/network/udp/UdpPlusSender.cxx:
+	* nucleo/network/udp/UdpPlusReceiver.cxx:
+	* nucleo/image/source/nudppImageSource.cxx:
+	* nucleo/image/sink/nudppImageSink.cxx:
+	* nucleo/gl/text/glFont.cxx:
+	* apps/videoServer/vsSubProcess.cxx:
+	* nucleo/core/select/sReactiveEngine.cxx:
+	* nucleo/core/FileKeeper.cxx:
+	* nucleo/utils/FileUtils.cxx:
+	Included either stdio.h, math.h, sys/select.h, sys/socket.h or
+	sys/errno.h for fixing build on certain system. Reported by
+	Jason Bechervaise and Keith Rothman.
+	
+2004-06-29  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/image/sink/Makefile.am:
+	* nucleo/image/source/Makefile.am:
+	* nucleo/data/vera/Makefile.am:
+	* nucleo/configure.ac:
+	Fixed build of the make dist tarball
+
+	* nucleo/rpm/Makefile.am:
+	* nucleo/rpm/nucleo.spec.in:
+	* nucleo/configure.ac:
+	* nucleo/Makefile.am:
+	Added some stuff to automagically build rpm package (not tested yet)
+
+	* nucleo/gl/window/glWindow.cxx:
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	* nucleo/gl/window/glWindow.H:
+	Added the server time to the event
+
+2004-03-30  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/plugins/Makefile.am:
+	Fixed the plugin-list build
+
+	* nucleo/image/source/v4lImageSource.cxx: 
+	Fixed the includes
+
+	* tests/test-udpplus.cxx: 
+	* nucleo/image/sink/imagefileImageSink.H:
+	* nucleo/image/source/nudppImageSource.cxx:
+	* nucleo/network/udp/UdpPlusSender.cxx:
+	* nucleo/network/udp/UdpPlusReceiver.cxx:
+	Fixed compilation: included unistd.h
+
+2004-03-29  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/gl/text/glString.*: 
+	* nucleo/gl/text/glFont.*: 	
+	* nucleo/gl/text/glFontManager.*:
+	* tests/test-glString.cxx:	
+	Bug fix (font cache): font size is now a query string argument
+	Added a getFont method to glString and getLineHeight to glFont
+
+	* nucleo/gl/texture/glTexture.*: 
+	Added getWidth and getHeight methods
+
+----------------------------------------------------------------------------
+Nicolas made a lot of changes...
+The tag "paques" was added before committing these changes
+----------------------------------------------------------------------------	
+	
+
+2004-03-03  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/gl/window/glWindow_GLX.cxx (setup):
+	Tried a DEPTH of 1 if 24 fail (needed if I run my server at depth 16)
+
+	* tests/test-ffmpeg-sink.cxx:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.H:
+	Fixed compilation if HAVE_FFMPEG
+
+2004-02-15  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/gl/texture/glTiledTexturedImage.cxx (*):
+	* nucleo/gl/texture/glTiledTexturedImage.H:
+	Some cleaups and fixes. Added a way to store and reuse the
+	tessellation
+
+2004-02-14  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/gl/texture/glTiledTexturedImage.cxx (*):
+	* nucleo/gl/texture/glTiledTexturedImage.H (class glTiledTexturedImage):
+	Moved point and uTex under the glTiledTexturedImage class
+
+2004-02-12  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/gl/texture/Makefile.am:
+	* nucleo/gl/texture/glTiledTexturedImage.cxx (new file):
+	* nucleo/gl/texture/glTiledTexturedImage.H (new file):
+	Implemented tiled texture image
+
+	* nucleo/gl/glUtils.cxx (glSetupTextureImage):
+	Allows to pass a size different than the image size, useful with
+	GL_UNPACK_ROW_LENGTH, _GL_UNPACK_SKIP_PIXELS GL_UNPACK_SKIP_ROWS.
+
+	* nucleo/gl/glUtils.H:
+	* nucleo/gl/glUtils.cxx (glSetupDummyTextureImage):
+	New interface function for setting up a texture with a NULL image
+	but a size
+
+	* nucleo/gl/glUtils.H:
+	* nucleo/gl/glUtils.cxx (glCheckError):
+	A function for printing errors
+
+	* tests/test-FileKeeper.cxx:
+	* tests/test-SocketKeeper.cxx: 
+	include <unistd.h> for read and write
+
+	* configure.ac:
+	Fixed X detection
+
+2004-02-11 13:12  roussel
+
+	* configure.ac:
+	* nucleo-config.in:
+	Simplified configure.ac a little
+
+2004-02-11 13:11  roussel
+
+	* build-utils/bootstrap
+	Remove autom4*cache before bootstrapping
+
+2004-02-11 13:09  roussel
+
+	* nucleo/image/processing/difference/SceneChangeDetector.H:
+	* nucleo/image/processing/difference/SceneChangeDetector.cxx:
+	* nucleo/image/source/noiseImageSource.H:
+	* nucleo/image/source/noiseImageSource.cxx:
+	* nucleo/image/source/serverpushImageSource.H:
+	* nucleo/image/source/serverpushImageSource.cxx:
+	* nucleo/image/source/vsmpImageSource.H:
+	* nucleo/image/source/vsmpImageSource.cxx:
+	* nucleo/image/source/vssImageSource.H:
+	* nucleo/image/source/vssImageSource.cxx:
+	* nucleo/image/source/vstpImageSource.H:
+	* nucleo/image/source/vstpImageSource.cxx:
+	* demos/video/mini-videoProbe.cxx:
+	* demos/vnc/vnc-relay.cxx:
+	Use the new ReactiveEngine implementation
+
+2004-02-11 13:09  roussel
+
+	* nucleo/image/source/ImageSource.H:
+	* nucleo/image/source/ImageSource.cxx:
+	Image sources are now created with ImageSource::create
+
+2004-02-11 13:09  roussel
+
+	* nucleo/image/sink/ImageSink.H:
+	* nucleo/image/sink/glwindowImageSink.cxx:
+	Image sinks are now created with ImageSink::create
+
+2004-02-11 13:07  roussel
+
+	* nucleo/image/encoding/Conversion.cxx:
+	* nucleo/image/encoding/JPEG_Conversion.cxx:
+	Removed an ugly hack related to ancient libjeg versions
+
+2004-02-11 13:06  roussel
+
+	* nucleo/network/http/HttpMessage.cxx:
+	* nucleo/network/http/ServerPush.H:
+	* nucleo/network/tcp/TcpConnection.cxx:
+	* nucleo/network/tcp/TcpServer.H:
+	* nucleo/network/tcp/TcpServer.cxx:
+	Use the new ReactiveEngine implementation
+
+2004-02-11 13:05  roussel
+
+	* nucleo/network/rdv/ServiceAnnouncer.H:
+	* nucleo/network/rdv/ServiceFinder.H:
+	ServiceFinder is now a ReactiveObject (so it can notify clients)
+
+2004-02-11 13:04  roussel
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.H:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx:
+	* nucleo/plugins/quicktime/movImageSource.H:
+	* nucleo/plugins/quicktime/movImageSource.cxx:
+	* nucleo/plugins/quicktime/sgImageSource.H:
+	* nucleo/plugins/quicktime/sgImageSource.cxx:
+	* nucleo/plugins/v4l/v4lImageSource.H:
+	* nucleo/plugins/v4l/v4lImageSource.cxx:
+	* nucleo/plugins/vnc/vncImageSource.cxx:
+	Plugins now use the new ReactiveEngine implementation
+
+2004-02-11 13:00  roussel
+
+	* nucleo/gl/glUtils.H:
+	* nucleo/gl/glUtils.cxx:
+	glSetupTextureImage has new arguments to specify a subregion A new
+	internal function (n2gl) allows to map a nucleo image encoding to
+	OpenGL parameters
+
+2004-02-11 12:58  roussel
+
+	* nucleo/gl/window/glWindow.H:
+	* nucleo/gl/window/glWindow.cxx:
+	* nucleo/gl/window/glWindow_AGL.H:
+	* nucleo/gl/window/glWindow_AGL.cxx:
+	* nucleo/gl/window/glWindow_GLX.H:
+	* nucleo/gl/window/glWindow_GLX.cxx:
+	Added a new warpCursor method to glWindow.
+	glWindows now use the new ReactiveEngine implementation.
+
+2004-02-11 12:55  roussel
+
+	* nucleo/gl/scenegraph/sgNode.H
+	* nucleo/gl/scenegraph/sgViewpoint.H:
+	* nucleo/gl/texture/glTexturedImage.H:
+	* nucleo/gl/texture/glTexturedImage.cxx:
+	Check for __APPLE__ instead of OS_IS_MACOSX
+
+2004-02-11 12:53  roussel
+
+	* nucleo/core/FileKeeper.H:
+	* nucleo/core/FileKeeper.cxx:
+	* nucleo/core/Makefile.am:
+	* nucleo/core/ReactiveEngine.H:
+	* nucleo/core/ReactiveEngine.cxx:
+	* nucleo/core/ReactiveObject.H:
+	* nucleo/core/TimeKeeper.H:
+	* nucleo/core/TimeKeeper.cxx:
+	* nucleo/core/carbon/Makefile.am:
+	* nucleo/core/carbon/cFileKeeper.H:
+	* nucleo/core/carbon/cFileKeeper.cxx:
+	* nucleo/core/carbon/cReactiveEngine.H:
+	* nucleo/core/carbon/cReactiveEngine.cxx:
+	* nucleo/core/carbon/cTimeKeeper.H:
+	* nucleo/core/carbon/cTimeKeeper.cxx:
+	* nucleo/core/select/Makefile.am:
+	* nucleo/core/select/sFileKeeper.H:
+	* nucleo/core/select/sFileKeeper.cxx:
+	* nucleo/core/select/sReactiveEngine.H:
+	* nucleo/core/select/sReactiveEngine.cxx:
+	* nucleo/core/select/sTimeKeeper.H:
+	* nucleo/core/select/sTimeKeeper.cxx:
+	New ReactiveEngine implementation
+
+2004-02-11 12:52  roussel
+
+	* nucleo/core/PluginManager.H:
+	* nucleo/core/PluginManager.cxx:
+	PluginManager fix: plugins are now loaded only once (so that
+	static variables are not duplicated)
+
+2004-02-11 12:36  roussel
+
+	* apps/videoClient.cxx:
+	* apps/videoServer/videoServer.cxx:
+	* apps/videoServer/vsPostNotifier.cxx:
+	* apps/videoServer/vsPreNotifier.cxx:
+	* apps/videoServer/vsService.cxx:
+	Use the new ReactiveEngine implementation and remove references to
+	strstream
+
+2004-02-11 12:34  roussel
+
+	* nucleo/utils/AppUtils.cxx:
+	* nucleo/utils/Makefile.am:
+	* nucleo/utils/TimeUtils.H:
+	* nucleo/utils/TimeUtils.cxx:
+	Added TimeUtils files for the Chronometer implementation Check
+	__APPLE__ instead of OS_IS_MACOSX in AppUtils.cxx
+	
+2004-02-11 12:30  roussel
+
+	* docs/todo.html:
+	* nucleo/plugins/howl/Makefile.am:
+	* nucleo/plugins/howl/howlKeeper.H:
+	* nucleo/plugins/howl/howlKeeper.cxx:
+	* nucleo/plugins/howl/howlObject.H:
+	* nucleo/plugins/howl/howlObject.cxx:
+	* nucleo/plugins/howl/howlServiceAnnouncer.H:
+	* nucleo/plugins/howl/howlServiceAnnouncer.cxx:
+	* nucleo/plugins/howl/howlServiceFinder.H:
+	* nucleo/plugins/howl/howlServiceFinder.cxx:
+	Howl plugin revamped to use the new ReactiveEngine implementation
+
+2004-02-11 12:27  roussel
+
+	* tests/Makefile.am:
+	* tests/test-FileKeeper.cxx:
+	* tests/test-MemAlloc.cxx:
+	* tests/test-SocketKeeper.cxx:
+	* tests/test-TimeKeeper.cxx:
+	* tests/test-glWindow.cxx:
+	* tests/test-httpServer.cxx:
+	* tests/test-plugins.cxx:
+	* tests/test-rdv.cxx:
+	* tests/test-reactiveEngine.cxx:
+	Update existing test programs and add 3 new ones for the new
+	ReactiveEngine implementation
+
+2004-01-28 11:24  roussel
+
+	* configure.ac:
+	* nucleo-config.in:
+	* demos/video/mini-videoProbe.cxx:
+	* nucleo/image/sink/glwindowImageSink.cxx:
+	* nucleo/image/sink/glxwindowImageSink.cxx:
+	* nucleo/utils/SignalUtils.H:
+	* nucleo/utils/SignalUtils.cxx:
+	glft support is back (only used in glwindow image sinks)
+
+2004-01-20  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* apps/videoServer/vsService.cxx:
+	* nucleo/core/ReactiveEngine.cxx:
+	* nucleo/image/source/ppmImageSource.H:
+	* nucleo/network/tcp/TcpConnection.cxx:
+	* nucleo/network/udp/UdpSender.cxx:
+	Fixed compilation with gcc 2.95 by including errno.h, sys/time.h,
+	and stdio.h.
+	Note: gcc 2.95 has no sstream (it has strstream) but this should be
+	fixed by the user (see http://gcc.gnu.org/fom_serv/cache/80.html).
+
+2004-01-05  Nicolas Roussel  <roussel@lri.fr>
+
+	* docs/*
+	Documentation update. Still a lot of work to do...
+	
+	* apps/Makefile.am
+	* apps/videoServer/Makefile.am
+	* tests/Makefile.am
+	Changed *LDADD into AM_LDFLAGS so that programs are not built
+	using the installed version of the library but the one from the
+	same build process
+
+	* nucleo/network/rdv/*
+	* apps/videoServer/videoServer.cxx
+	Added two new network services based on RendezVous:
+	ServiceAnnouncer and ServiceFinder. The real implementation of
+	these services is provided by the howl plugin. VideoServer
+	publishes two services (photo and video) using ServiceAnnouncer.
+
+	* configure.ac
+	* nucleo/plugins/v4l
+	* nucleo/plugins/ffmpeg
+	* nucleo/plugins/howl
+	* nucleo/core/PluginManager*
+	Fixed the v4l plug-in and started fixing ffmpeg plug-ins. Added a
+	new howl-based plug-in (RendezVous implementation)
+
+	* nucleo/image/source/ImageSource*
+	* nucleo/image/sink/ImageSink*
+	Replaced createImageSource by ImageSource::create and
+	createImageSink by ImageSink::create
+
+	* nucleo/core/Reactive*
+	Added a isAlive method to Observable which is now used by
+	ReactiveEngine to avoid segfault when trying to call the react
+	method on a dead object.
+
+2003-12-26  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/gl/scenegraph/sgViewpoint.cxx (unproject):
+	Fixed debug msg
+	
+	* nucleo/gl/scenegraph/sgViewpoint.cxx (project):
+	* nucleo/gl/scenegraph/sgViewpoint.H:
+	New method "project" which performs a gluProject as unproject performs
+	a gluUnproject
+
+2003-12-21  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/gl/window/glWindow_GLX.cxx (getNextEvent): 
+	Fixed un-initialized event on "true" return. Picked the first handled
+	event.
+
+	* nucleo/Makefile.am:
+	Added "make ninstall" for just installing libNucleo (not the headers
+	and the plugins) and "make pninstall" for just installing libNucleo
+	and the plugins.
+
+	* nucleo/gl/window/glWindow_GLX.cxx (setup):
+	free the gl visual info
+
+2003-12-19  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/gl/scenegraph/sgNode.cxx (restoreSavedTransformations),
+	(saveTransformations):
+	* nucleo/gl/scenegraph/sgNode.H:
+	Interface functions for saving and restoring a transformation
+
+	* nucleo-config.in:
+	* nucleo.pc.in:
+	Fixed the CPPFLAGS flags
+
+	* nucleo/Makefile.am:
+	* nucleo/***.cxx
+	* nucleo/***.H
+	Applied the following sane principals: do not install config.H,
+	never include config.H in a header and always include (first)
+	config.H in a source file.
+	Yes, I started the nucleo switch in metisse.
+
+2003-12-18  Olivier Chapuis  <olivier.chapuis@free.fr>
+	
+	* configure.ac:
+	NUCLEO_* variables clean-up
+
+	* test/Makefile.am:
+	* demos/vnc/Makefile.am:
+	* nucleo/plugins/**Makefile.am:
+	Install plugins under libdir/nucleo and removed the lib prefix.
+	For vnc and ffmpeg, finally, build shared libraries.
+
+	* docs/MacOSX/nTest.in:
+	To be consistent with the Makefile, expand $datadir and replace
+	@prefix@/share/ by $datadir.
+
+2003-12-17  Nicolas Roussel  <roussel@lri.fr>
+
+	* nucleo/plugins/**Makefile.am
+	Moved each plugin description back into the corresponding directory.
+	Changed the way plugins are built with libtool (added a -module switch).
+	The description now takes the dlopen name from the library.
+	Some plugins (ffmpeg and vnc) are now built as a static library as
+	well, so they can be linked (needed by vnc-relay for example).
+	
+	* tests/Makefile.am: 
+	Added test-speed and test-MemAlloc
+
+2003-12-16  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* bootstrap:
+	Allowed to use automake-1.8 (less buggy than 1.7?)
+
+	* configure.ac:
+	* **/Makfile.am:
+	Added .SILENT in all Makfile.am and a way to disable this mode by
+	setting DISABLE_SILENT in configure.ac.
+
+2003-12-16  Nicolas Roussel  <roussel@lri.fr>
+
+	* configure.ac: 
+	* docs/MacOSX/nTest.in: 	
+	* docs/MacOSX/Makefile.am: 
+	Fixed nTest bug (executable was not found when not iin current directory)
+	nTest is now generated and installed with nucleo-config and others in bin/
+	
+	* docs/MacOSX/nTest: 
+	Script has been modified to handle libtool-made programs.
+
+	* nucleo/Makefile.am: 
+	* nucleo/image/processing/Makefile.am: 
+	Added two dummy .cxx files so that libtool links with g++ instead
+	of gcc in these directories as in the others. This fixes a bug on
+	Mac OS X where everything compiled but nothing was executable
+	because of the gcc/g++ mix.
+
+2003-12-15  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* nucleo/core/Makefile.am:
+	* configure.ac:
+	Fixed the definition of the plugin list dir and the plugin dir.
+	Unfortunately, I do not see how to put these values in nucleo/config.H
+
+2003-12-15  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* configure.ac:
+	* Makefile.am: 
+	Set "silent" mode for make and disable static library by default
+
+2003-12-11  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* tests/test-glWindow.cxx:
+	* nucleo/gl/window/glWindow_GLX.H:
+	* nucleo/gl/window/glWindow_GLX.cxx (_getAtom), (_checkNetSupported),
+	(_ewmhFullScreenMode), (fullScreenMode):
+	Re-added ewmh full screen method from videospace plus some fixes
+	and coments (switching between full screen mode and original size works
+	now; some remarks on applications which starts fullscreen and want to
+	desactivate this state; apply this logic in the test).
+
+	* demos/vnc/vnc-relay.cxx (main):
+	* nucleo/plugins/vnc/vncImageSource.H:
+	* nucleo/plugins/vnc/vncImageSource.cxx (start), (react):
+	Connected the image source to the reactive engine via a file keeper.
+	Fixed the CutText msg (from videospace).
+
+	* nucleo/gl/window/glWindow_GLX.cxx (setup), (glWindow_GLX), (react):
+	Fixed (?) the relation with the file keeper
+
+	* tests/Makefile.am:
+	* tests/test-glWindow.cxx (main): 
+	Enabled and fixed (quadro -> nucleo)
+
+	* nucleo/core/ReactiveEngine.cxx (oneStep):
+	Fixed maxFd for stdin
+
+2003-12-10  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* **/Makefile.am:
+	Added -I${top_builddir}/ to the AM_CPPFLAGS to be sure that config.H
+	is found
+
+	* tests/test-plugins.cxx (main):
+	* configure.ac:
+	* nucleo/core/PluginManager.cxx (PluginManager), (_refreshPluginList):
+	* nucleo/core/PluginManager.H:
+	* nucleo/plugins/Makefile.am: 
+	Build the plugin list and install it under configdir (prefix/share).
+	The PluginManager knows how to found the plugin list and the
+	plugins installed by nucleo (we may imagine more complex procedure
+	for supporting external plugin). You may also pass a plugin directory
+	*and* a plugin list dir to the plugin manage (may be, it will be better
+	to pass a plugin file). 
+
+2003-12-09  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* apps/videoServer/Makefile.am:
+	* apps/Makefile.am:
+	Rerenaming
+
+	* tests/test-ffmpeg-sink.cxx:
+	* tests/Makefile.am:
+	Fixed compilation, not the code (some FIXME positioned)
+	Note/FIXME: I've used ffmpeg-0.4.8. -lpng is needed for linking, so
+	at least for this version HAVE_FFMPEG depends on HAVE_PNG
+
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.H:
+	* nucleo/plugins/ffmpeg/ffmpegImageSource.cxx (react), (check),
+	(prepare), (ffmpegImageSource):
+	Fixed compilation. "if 0" prepare and replace check by prepare.
+	"if 0" the Pacemaker. The code should be fixed, some FIXME positioned.
+
+	* configure.ac:
+	* nucleo/plugins/ffmpeg/Makefile.am:
+	* nucleo/plugins/ffmpeg/test-ffmpeg-sink.cxx
+	* tests/test-ffmpeg-sink.cxx:
+	* tests/Makefile.am:
+	* nucleo/plugins/vnc/Makefile.am:
+	* nucleo/plugins/vnc/vnc-relay.cxx:
+	* demos/vnc/vnc-relay.cxx:
+	* demos/vnc/Makefile.am:
+	Moved vnc-relay and test-ffmpeg-sink.cxx
+
+2003-12-09  Olivier Chapuis  <olivier.chapuis@free.fr>
+
+	* .cvsignore
+	Begin to add some cvsignore files
+
+	* Makefile.am: 
+	Forgot to put LICENCE in the dist
+	
+	* **/Makefile.am:
+	* COPYING.LESSER:
+	* LICENSE:
+	* AUTHORS:
+	* NEWS:
+	* README:
+	* README.cvs
+	* configure.ac:
+	* nucleo-config.in:
+	* nucleo.pc.in:
+	* build-utils/bootstrap:
+	Added automake support
+
+	* **/Makefile.in:
+	* nucleo/Makefile.subdir.in:
+	* nucleo/config.H.in:
+	* build-utils/config.guess:
+	* build-utils/config.sub:
+	* build-utils/install-sh:
+	* configure:
+	Removed
+
+	* Added a tag "before_automake" (cvs tag before_automake)
+
+	* ChangeLog:
+	Add a ChangeLog, we will see if it is used, if not we will remove it.
+	If you use (x)emacs try "C-x 4 a" when you edit a file.
