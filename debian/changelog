@@ -1,0 +1,5 @@
+nucleo (0.7.3-0ubuntu1) karmic; urgency=low
+
+  * Initial release (LP: #305313)
+
+ -- Julien Lavergne <julien.lavergne@gmail.com>  Mon, 04 May 2009 18:10:47 +0200

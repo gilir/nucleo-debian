@@ -1,0 +1,35 @@
+#!/usr/bin/make -f
+#export DH_VERBOSE=1
+
+configure_flags += 	--with-ffmpeg=no \
+			--with-tests
+
+build: build-stamp
+build-stamp:
+	dh build --before configure
+	dh_auto_configure -- $(configure_flags)
+	dh build --after configure
+	touch build-stamp
+
+clean:
+	dh clean
+
+install: build install-stamp
+install-stamp:
+	dh install
+	rm debian/tmp/usr/bin/nBundle
+	rm debian/tmp/usr/bin/nTest
+	touch install-stamp
+
+binary-arch: install
+	dh_strip --dbg-package=libnucleo0-dbg
+	dh binary-arch --remaining
+
+binary-indep: install
+	dh binary-indep
+
+binary: binary-arch binary-indep
+
+get-orig-source:
+	dh_testdir
+	uscan --force-download --verbose --repack

@@ -1,0 +1,67 @@
+Source: nucleo
+Section: x11
+Priority: optional
+Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
+XSBC-Original-Maintainer: Julien Lavergne <julien.lavergne@gmail.com>
+Build-Depends: 	debhelper (>= 7.0.0), 
+		libglu1-mesa-dev,
+		libxi-dev,
+		libjpeg62-dev,
+		libexif-dev,
+		libpng12-dev,
+		libfreetype6-dev,
+		libavahi-compat-libdnssd-dev,
+		libexpat1-dev,
+		libgnutls-dev,
+		libqt4-dev,
+		libcv-dev,
+Standards-Version: 3.8.1
+Homepage: http://insitu.lri.fr/~roussel/projects/nucleo/
+
+Package: libnucleo0
+Section: libs
+Architecture: any
+Depends: 	${shlibs:Depends}, 
+		${misc:Depends}
+Description: a library for Metisse
+ Núcleo is a toolkit for exploring new uses of video and new human-computer 
+ interaction techniques. It also used for the Metisse project.
+
+Package: libnucleo-dev
+Architecture: any
+Section: libdevel
+Depends: 	libnucleo0 (= ${binary:Version}),
+		${misc:Depends},
+		libglu1-mesa-dev,
+		libavahi-compat-libdnssd-dev,
+		libfreetype6-dev,
+		libgnutls-dev,
+		libexif-dev,
+		libjpeg62-dev,
+Description: a library for Metisse - development files
+ Núcleo is a toolkit for exploring new uses of video and new human-computer 
+ interaction techniques. It also used for the Metisse project.
+ .
+ This package provides the include files and static library for the
+ libnucleo0 library functions.
+
+Package: libnucleo0-dbg
+Architecture: any
+Section: libdevel
+Priority: extra
+Depends: 	libnucleo0 (= ${binary:Version}),
+		${misc:Depends}
+Description: a library for Metisse - debug symbols
+ Núcleo is a toolkit for exploring new uses of video and new human-computer 
+ interaction techniques. It also used for the Metisse project.
+
+Package: libnucleo-utils
+Architecture: any
+Section: libdevel
+Depends: 	${shlibs:Depends}, 
+		${misc:Depends}
+Description: a library for Metisse - utility files
+ Núcleo is a toolkit for exploring new uses of video and new human-computer 
+ interaction techniques. It also used for the Metisse project.
+ .
+ This package provides utility files to use Núcleo.
