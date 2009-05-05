@@ -62,7 +62,8 @@ Package: libnucleo-utils
 Architecture: any
 Section: libdevel
 Depends: 	${shlibs:Depends}, 
-		${misc:Depends}
+		${misc:Depends},
+		ttf-bitstream-vera
 Description: a library for Metisse - utility files
  Núcleo is a toolkit for exploring new uses of video and new human-computer 
  interaction techniques. It also used for the Metisse project.
