@@ -1,0 +1,60 @@
+diff --git a/demos/video/src2files.cxx b/demos/video/src2files.cxx
+index 6d770f9..670f709 100644
+--- a/demos/video/src2files.cxx
++++ b/demos/video/src2files.cxx
+@@ -17,6 +17,7 @@
+ 
+ #include <stdexcept>
+ #include <cstdlib>
++#include <cstdio>
+ 
+ #include <libgen.h>
+ 
+diff --git a/nucleo/core/TimeStamp.cxx b/nucleo/core/TimeStamp.cxx
+index 0aefca0..e7061f8 100644
+--- a/nucleo/core/TimeStamp.cxx
++++ b/nucleo/core/TimeStamp.cxx
+@@ -22,6 +22,7 @@
+ #include <sstream>
+ #include <stdexcept>
+ #include <cstring>
++#include <cstdio>
+ 
+ namespace nucleo {
+ 
+diff --git a/nucleo/core/URI.cxx b/nucleo/core/URI.cxx
+index 57f108d..de10bd7 100644
+--- a/nucleo/core/URI.cxx
++++ b/nucleo/core/URI.cxx
+@@ -13,6 +13,7 @@
+ 
+ #include <nucleo/core/URI.H>
+ 
++#include <cstdio>
+ #include <iostream>
+ #include <sstream>
+ #include <cstdlib>
+diff --git a/nucleo/helpers/Phone.cxx b/nucleo/helpers/Phone.cxx
+index 67a4521..ee3c76a 100644
+--- a/nucleo/helpers/Phone.cxx
++++ b/nucleo/helpers/Phone.cxx
+@@ -21,6 +21,7 @@
+ 
+ #include <iostream>
+ #include <sstream>
++#include <cstdio>
+ 
+ using namespace nucleo ;
+ 
+diff --git a/nucleo/network/udp/UdpSocket.cxx b/nucleo/network/udp/UdpSocket.cxx
+index c3bd6bf..2e265c5 100644
+--- a/nucleo/network/udp/UdpSocket.cxx
++++ b/nucleo/network/udp/UdpSocket.cxx
+@@ -22,6 +22,7 @@
+ #include <sstream>
+ #include <cstring>
+ #include <cstdlib>
++#include <cstdio>
+ 
+ namespace nucleo {
+ 
