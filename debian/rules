@@ -3,8 +3,7 @@
 include /usr/share/quilt/quilt.make
 
 
-configure_flags += 	--with-ffmpeg=no \
-			--with-tests
+configure_flags += 	--with-tests
 
 build: build-stamp
 build-stamp: patch
