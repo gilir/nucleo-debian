@@ -50,7 +50,7 @@ Description: a library for Metisse - development files
 
 Package: libnucleo0-dbg
 Architecture: any
-Section: libdevel
+Section: debug
 Priority: extra
 Depends: 	libnucleo0 (= ${binary:Version}),
 		${misc:Depends}
