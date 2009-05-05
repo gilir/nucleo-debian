@@ -18,6 +18,8 @@ Build-Depends: 	debhelper (>= 7.0.0),
 		libcv-dev,
 Standards-Version: 3.8.1
 Homepage: http://insitu.lri.fr/~roussel/projects/nucleo/
+Vcs-Git: git://github.com/gilir/nucleo-debian.git
+Vcs-Browser: http://github.com/gilir/nucleo-debian/tree
 
 Package: libnucleo0
 Section: libs
