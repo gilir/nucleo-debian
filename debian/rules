@@ -1,17 +1,19 @@
 #!/usr/bin/make -f
 #export DH_VERBOSE=1
+include /usr/share/quilt/quilt.make
+
 
 configure_flags += 	--with-ffmpeg=no \
 			--with-tests
 
 build: build-stamp
-build-stamp:
+build-stamp: patch
 	dh build --before configure
 	dh_auto_configure -- $(configure_flags)
 	dh build --after configure
 	touch build-stamp
 
-clean:
+clean: unpatch
 	dh clean
 
 install: build install-stamp

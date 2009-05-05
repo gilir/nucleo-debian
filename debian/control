@@ -3,7 +3,8 @@ Section: x11
 Priority: optional
 Maintainer: Ubuntu MOTU Developers <ubuntu-motu@lists.ubuntu.com>
 XSBC-Original-Maintainer: Julien Lavergne <julien.lavergne@gmail.com>
-Build-Depends: 	debhelper (>= 7.0.0), 
+Build-Depends: 	debhelper (>= 7.0.0),
+		quilt,
 		libglu1-mesa-dev,
 		libxi-dev,
 		libjpeg62-dev,
