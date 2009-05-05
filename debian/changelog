@@ -1,5 +1,6 @@
 nucleo (0.7.3-0ubuntu1) karmic; urgency=low
 
   * Initial release (LP: #305313)
+  * debian/patches/gcc-4.4-fix.patch: Fix FTBFS with gcc-4.4.
 
  -- Julien Lavergne <julien.lavergne@gmail.com>  Mon, 04 May 2009 18:10:47 +0200
