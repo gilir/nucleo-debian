@@ -1,2 +1,4 @@
 usr/share/
-usr/bin/
+usr/bin/videoClient
+usr/bin/nucleo-config
+usr/bin/videoServer

@@ -18,8 +18,6 @@ clean: unpatch
 install: build install-stamp
 install-stamp:
 	dh install
-	rm debian/tmp/usr/bin/nBundle
-	rm debian/tmp/usr/bin/nTest
 	touch install-stamp
 
 binary-arch: install
